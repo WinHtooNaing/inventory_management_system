@@ -47,5 +47,9 @@ namespace inventory_management_system.View.General
             this.Hide();
         }
 
+        private void Index_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

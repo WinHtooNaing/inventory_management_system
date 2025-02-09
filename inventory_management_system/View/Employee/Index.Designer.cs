@@ -37,8 +37,11 @@
             button1 = new Button();
             panel2 = new Panel();
             panel3 = new Panel();
+            addBtn = new Button();
+            EmployeeGridView = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)EmployeeGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -144,17 +147,45 @@
             panel3.Size = new Size(250, 125);
             panel3.TabIndex = 1;
             // 
+            // addBtn
+            // 
+            addBtn.BackColor = Color.CornflowerBlue;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addBtn.ForeColor = Color.White;
+            addBtn.Location = new Point(274, 107);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(135, 49);
+            addBtn.TabIndex = 8;
+            addBtn.Text = "Add";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += button7_Click;
+            // 
+            // EmployeeGridView
+            // 
+            EmployeeGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            EmployeeGridView.Location = new Point(274, 175);
+            EmployeeGridView.Name = "EmployeeGridView";
+            EmployeeGridView.RowHeadersWidth = 51;
+            EmployeeGridView.Size = new Size(1070, 512);
+            EmployeeGridView.TabIndex = 7;
+            EmployeeGridView.CellContentClick += EmployeeGridView_CellContentClick;
+            // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1374, 686);
+            Controls.Add(addBtn);
+            Controls.Add(EmployeeGridView);
             Controls.Add(panel1);
             Name = "Index";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Index";
+            Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)EmployeeGridView).EndInit();
             ResumeLayout(false);
         }
 
@@ -169,5 +200,7 @@
         private Button button1;
         private Panel panel2;
         private Panel panel3;
+        private Button addBtn;
+        private DataGridView EmployeeGridView;
     }
 }

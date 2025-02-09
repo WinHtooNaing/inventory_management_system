@@ -204,6 +204,7 @@ namespace inventory_management_system.View.Item
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
+searchTxt.Text = "";
             LoadItemsIntoGrid("");
         }
     }

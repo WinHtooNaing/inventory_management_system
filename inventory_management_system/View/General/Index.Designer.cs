@@ -153,6 +153,7 @@
             Name = "Index";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Index";
+            Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ResumeLayout(false);
