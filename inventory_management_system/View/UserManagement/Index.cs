@@ -1,0 +1,248 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using inventory_management_system.Controller;
+
+namespace inventory_management_system.View.UserManagement
+{
+    public partial class Index : Form
+    {
+        private readonly UserController userController;
+        public Index()
+        {
+            InitializeComponent();
+            userController = new UserController();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboard = new Dashboard();
+            dashboard.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Item.Index index = new Item.Index();
+            index.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Employee.Index index = new Employee.Index();
+            index.Show();
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            General.Index index = new General.Index();
+            index.Show();
+            this.Hide();
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+            Create create = new Create();   
+            create.Show();
+            this.Hide();
+        }
+
+        private void Index_Load(object sender, EventArgs e)
+        {
+            LoadUsersIntoGrid();
+        }
+        private void LoadUsersIntoGrid()
+        {
+            try
+            {
+                var users = userController.GetAllUsers();
+                userGridView.DataSource = users;
+
+                // Add a "No" column for numbering
+                if (!userGridView.Columns.Contains("No"))
+                {
+                    DataGridViewTextBoxColumn noColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "No",
+                        HeaderText = "No",
+                        ReadOnly = true
+                    };
+                    userGridView.Columns.Insert(0, noColumn);
+                }
+
+                // Hide the "Active" column
+                if (userGridView.Columns.Contains("Active"))
+                {
+                    userGridView.Columns["Active"].Visible = false;
+                }
+
+                // Add a "Status" column
+                if (!userGridView.Columns.Contains("Status"))
+                {
+                    DataGridViewTextBoxColumn statusColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "Status",
+                        HeaderText = "Status",
+                        ReadOnly = true
+                    };
+                    userGridView.Columns.Add(statusColumn);
+                }
+
+                // Add a "Change Status" button
+                if (!userGridView.Columns.Contains("ToggleStatus"))
+                {
+                    DataGridViewButtonColumn toggleStatusColumn = new DataGridViewButtonColumn
+                    {
+                        Name = "ToggleStatus",
+                        HeaderText = "",
+                        Text = "Change Status",
+                        UseColumnTextForButtonValue = true
+                    };
+                    userGridView.Columns.Add(toggleStatusColumn);
+                    toggleStatusColumn.DefaultCellStyle.BackColor = Color.Blue;
+                    toggleStatusColumn.DefaultCellStyle.ForeColor = Color.White;
+                }
+
+                // Add "Edit" button
+                if (!userGridView.Columns.Contains("Edit"))
+                {
+                    DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn
+                    {
+                        Name = "Edit",
+                        HeaderText = "",
+                        Text = "Edit",
+                        UseColumnTextForButtonValue = true
+                    };
+                    userGridView.Columns.Add(editColumn);
+                    editColumn.DefaultCellStyle.BackColor = Color.Orange;
+                    editColumn.DefaultCellStyle.ForeColor = Color.White;
+                }
+
+                // Add "Delete" button
+                if (!userGridView.Columns.Contains("Delete"))
+                {
+                    DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
+                    {
+                        Name = "Delete",
+                        HeaderText = "",
+                        Text = "Delete",
+                        UseColumnTextForButtonValue = true
+                    };
+                    userGridView.Columns.Add(deleteColumn);
+                    deleteColumn.DefaultCellStyle.BackColor = Color.Red;
+                    deleteColumn.DefaultCellStyle.ForeColor = Color.White;
+                }
+
+                // Populate "No" column and update "Status" column
+                for (int i = 0; i < userGridView.Rows.Count; i++)
+                {
+                    userGridView.Rows[i].Cells["No"].Value = i + 1;
+                    int activeStatus = Convert.ToInt32(userGridView.Rows[i].Cells["Active"].Value);
+
+                    // Set "Status" column
+                    userGridView.Rows[i].Cells["Status"].Value = activeStatus == 0 ? "Active" : "Banned";
+
+                    // Hide "Edit" and "Delete" buttons if the user is banned (Active = 1)
+                    if (activeStatus == 1)
+                    {
+
+                        userGridView.Rows[i].Cells["Edit"].Style.BackColor = Color.White;  // Hide text
+                        userGridView.Rows[i].Cells["Delete"].Style.BackColor = Color.White;  // Hide text
+                    }
+                    else
+                    {
+                        userGridView.Rows[i].Cells["Edit"].Style.ForeColor = Color.White;
+                        userGridView.Rows[i].Cells["Delete"].Style.ForeColor = Color.White;
+                    }
+                }
+
+                // Hide the "Id" and "Password" columns
+                if (userGridView.Columns.Contains("Id"))
+                    userGridView.Columns["Id"].Visible = false;
+                if (userGridView.Columns.Contains("Password"))
+                    userGridView.Columns["Password"].Visible = false;
+                if (userGridView.Columns.Contains("Role"))
+                    userGridView.Columns["Role"].Visible = false;
+
+
+                // Auto-size columns
+                userGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading users: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void EditUser(int userId)
+        {
+            Edit edit = new Edit(userId);
+            edit.Show();
+            this.Hide();
+        }
+        public void DeleteUser(int userId)
+        {
+
+
+
+            bool deleteUser = userController.DeleteUser(userId);
+            if (deleteUser)
+            {
+                MessageBox.Show("User Deleted successfully", "User delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadUsersIntoGrid();
+            }
+            else
+            {
+                MessageBox.Show("User not found or already deleted.", "User delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+
+        }
+
+        private void userGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int userId = Convert.ToInt32(userGridView.Rows[e.RowIndex].Cells["Id"].Value);
+                int currentStatus = Convert.ToInt32(userGridView.Rows[e.RowIndex].Cells["Active"].Value);
+
+                if (e.ColumnIndex == userGridView.Columns["Edit"].Index && currentStatus == 0)
+                {
+                    EditUser(userId);
+                }
+                else if (e.ColumnIndex == userGridView.Columns["Delete"].Index && currentStatus == 0)
+                {
+                    DeleteUser(userId);
+                }
+                else if (e.ColumnIndex == userGridView.Columns["ToggleStatus"].Index)
+                {
+                    // Toggle the user's status
+                    int newStatus = currentStatus == 0 ? 1 : 0;
+
+                    bool updated = userController.UpdateUserStatus(userId, newStatus);
+
+                    if (updated)
+                    {
+                        MessageBox.Show("User status updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadUsersIntoGrid(); // Refresh the DataGridView
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to update user status.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+    }
+    }
+

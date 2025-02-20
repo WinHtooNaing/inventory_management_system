@@ -37,8 +37,11 @@
             button1 = new Button();
             panel2 = new Panel();
             panel3 = new Panel();
+            addBtn = new Button();
+            GeneralGridView = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)GeneralGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -100,7 +103,7 @@
             button2.Name = "button2";
             button2.Size = new Size(250, 75);
             button2.TabIndex = 7;
-            button2.Text = "Selling Items";
+            button2.Text = "Seller";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
@@ -144,11 +147,37 @@
             panel3.Size = new Size(250, 125);
             panel3.TabIndex = 1;
             // 
+            // addBtn
+            // 
+            addBtn.BackColor = Color.CornflowerBlue;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addBtn.ForeColor = Color.White;
+            addBtn.Location = new Point(280, 107);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(135, 49);
+            addBtn.TabIndex = 10;
+            addBtn.Text = "Add";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
+            // 
+            // GeneralGridView
+            // 
+            GeneralGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GeneralGridView.Location = new Point(280, 175);
+            GeneralGridView.Name = "GeneralGridView";
+            GeneralGridView.RowHeadersWidth = 51;
+            GeneralGridView.Size = new Size(1070, 512);
+            GeneralGridView.TabIndex = 9;
+            GeneralGridView.CellContentClick += GeneralGridView_CellContentClick;
+            // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1374, 686);
+            Controls.Add(addBtn);
+            Controls.Add(GeneralGridView);
             Controls.Add(panel1);
             Name = "Index";
             StartPosition = FormStartPosition.CenterScreen;
@@ -156,6 +185,7 @@
             Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)GeneralGridView).EndInit();
             ResumeLayout(false);
         }
 
@@ -170,5 +200,7 @@
         private Button button1;
         private Panel panel2;
         private Panel panel3;
+        private Button addBtn;
+        private DataGridView GeneralGridView;
     }
 }

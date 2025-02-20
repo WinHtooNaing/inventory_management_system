@@ -1,4 +1,4 @@
-﻿namespace inventory_management_system.View.SellingItem
+﻿namespace inventory_management_system.View.UserManagement
 {
     partial class Index
     {
@@ -37,8 +37,11 @@
             button1 = new Button();
             panel2 = new Panel();
             panel3 = new Panel();
+            addBtn = new Button();
+            userGridView = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)userGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -54,7 +57,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 685);
-            panel1.TabIndex = 1;
+            panel1.TabIndex = 14;
             // 
             // button5
             // 
@@ -101,7 +104,7 @@
             button2.Name = "button2";
             button2.Size = new Size(250, 75);
             button2.TabIndex = 7;
-            button2.Text = "Selling Items";
+            button2.Text = "Seller";
             button2.UseVisualStyleBackColor = false;
             // 
             // button6
@@ -144,17 +147,45 @@
             panel3.Size = new Size(250, 125);
             panel3.TabIndex = 1;
             // 
+            // addBtn
+            // 
+            addBtn.BackColor = Color.CornflowerBlue;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addBtn.ForeColor = Color.White;
+            addBtn.Location = new Point(281, 52);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(135, 49);
+            addBtn.TabIndex = 16;
+            addBtn.Text = "Add";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
+            // 
+            // userGridView
+            // 
+            userGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            userGridView.Location = new Point(281, 120);
+            userGridView.Name = "userGridView";
+            userGridView.RowHeadersWidth = 51;
+            userGridView.Size = new Size(1070, 512);
+            userGridView.TabIndex = 15;
+            userGridView.CellContentClick += userGridView_CellContentClick;
+            // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1374, 686);
             Controls.Add(panel1);
+            Controls.Add(addBtn);
+            Controls.Add(userGridView);
             Name = "Index";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Index";
+            Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)userGridView).EndInit();
             ResumeLayout(false);
         }
 
@@ -169,5 +200,7 @@
         private Button button1;
         private Panel panel2;
         private Panel panel3;
+        private Button addBtn;
+        private DataGridView userGridView;
     }
 }

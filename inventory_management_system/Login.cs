@@ -43,24 +43,36 @@ namespace inventory_management_system
             {
                 dbConnection.OpenConnection();
                 SqlConnection connection = dbConnection.GetConnection();
-                string query = "select * from Login where UserId=@UserId and Password=@Password";
+                string query = "select * from users where UserId=@UserId and Password=@Password";
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@UserId", id);
                 cmd.Parameters.AddWithValue("@Password", pwd);
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    string userId = reader["UserId"].ToString();
-                    string password = reader["Password"].ToString();
                     string userName = reader["Name"].ToString();
+                    string userId = reader["UserId"].ToString();
+                    int role = int.Parse(reader["Role"].ToString());
                     reader.Close();
                     dbConnection.CloseConnection();
                     idTxt.Text = "";
                     pwdTxt.Text = "";
-                    MessageBox.Show("Login Successfully", "Login ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Dashboard dashbaord=new Dashboard();
-                    dashbaord.Show();
-                    this.Hide();
+                    SessionStorage.Session.UserName = userName;
+                    SessionStorage.Session.UserId = userId;
+                    if (role == 1) {
+                        MessageBox.Show("Login Successfully", "Login ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Dashboard dashbaord = new Dashboard();
+                        dashbaord.Show();
+                        this.Hide();
+                    }
+                    if (role == 0)
+                    {
+                        MessageBox.Show("Login Successfully", "Login ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Seller.Dashboard dashboard = new Seller.Dashboard();
+                        dashboard.Show();
+                        this.Hide();
+                    }
+
 
 
                 }

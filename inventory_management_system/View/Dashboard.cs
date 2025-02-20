@@ -32,7 +32,7 @@ namespace inventory_management_system.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SellingItem.Index index = new SellingItem.Index();
+            UserManagement.Index index = new UserManagement.Index();
             index.Show();
             this.Hide();
         }
@@ -46,9 +46,14 @@ namespace inventory_management_system.View
 
         private void button5_Click(object sender, EventArgs e)
         {
-            General.Index index = new General.Index();  
+            General.Index index = new General.Index();
             index.Show();
             this.Hide();
+        }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

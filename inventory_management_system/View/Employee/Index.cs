@@ -37,8 +37,8 @@ namespace inventory_management_system.View.Employee
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SellingItem.Index index = new SellingItem.Index();
-            index.Show();
+            UserManagement.Index userManagement = new UserManagement.Index();
+            userManagement.Show();
             this.Hide();
         }
 

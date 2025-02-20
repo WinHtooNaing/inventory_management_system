@@ -32,7 +32,7 @@ namespace inventory_management_system.View.Item
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SellingItem.Index index = new SellingItem.Index();
+            UserManagement.Index index = new UserManagement.Index();
             index.Show();
             this.Hide();
 

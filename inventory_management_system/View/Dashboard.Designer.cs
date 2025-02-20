@@ -101,7 +101,7 @@
             button2.Name = "button2";
             button2.Size = new Size(250, 75);
             button2.TabIndex = 7;
-            button2.Text = "Selling Items";
+            button2.Text = "Seller";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
@@ -154,6 +154,7 @@
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
+            Load += Dashboard_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ResumeLayout(false);
