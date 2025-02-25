@@ -1,4 +1,4 @@
-﻿namespace inventory_management_system.View.Employee
+﻿namespace inventory_management_system.View.SellItem
 {
     partial class Index
     {
@@ -38,11 +38,10 @@
             button1 = new Button();
             panel2 = new Panel();
             panel3 = new Panel();
-            addBtn = new Button();
-            EmployeeGridView = new DataGridView();
+            sellItemGridView = new DataGridView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)EmployeeGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sellItemGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -57,22 +56,22 @@
             panel1.Controls.Add(button6);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(panel2);
-            panel1.Location = new Point(0, 2);
+            panel1.Location = new Point(3, 2);
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 685);
-            panel1.TabIndex = 1;
+            panel1.TabIndex = 2;
             // 
             // button7
             // 
-            button7.BackColor = Color.White;
+            button7.BackColor = Color.CornflowerBlue;
             button7.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button7.Location = new Point(0, 458);
+            button7.ForeColor = Color.White;
+            button7.Location = new Point(0, 462);
             button7.Name = "button7";
             button7.Size = new Size(250, 75);
             button7.TabIndex = 11;
             button7.Text = "SellItem";
             button7.UseVisualStyleBackColor = false;
-            button7.Click += button7_Click_1;
             // 
             // button5
             // 
@@ -100,15 +99,15 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.CornflowerBlue;
+            button3.BackColor = Color.White;
             button3.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.ForeColor = Color.White;
             button3.Location = new Point(-1, 318);
             button3.Name = "button3";
             button3.Size = new Size(250, 75);
             button3.TabIndex = 8;
             button3.Text = "Employee";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -140,6 +139,7 @@
             // 
             button1.BackColor = Color.White;
             button1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.Black;
             button1.Location = new Point(-1, 104);
             button1.Name = "button1";
             button1.Size = new Size(250, 75);
@@ -164,38 +164,23 @@
             panel3.Size = new Size(250, 125);
             panel3.TabIndex = 1;
             // 
-            // addBtn
+            // sellItemGridView
             // 
-            addBtn.BackColor = Color.CornflowerBlue;
-            addBtn.FlatStyle = FlatStyle.Flat;
-            addBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            addBtn.ForeColor = Color.White;
-            addBtn.Location = new Point(274, 94);
-            addBtn.Name = "addBtn";
-            addBtn.Size = new Size(186, 62);
-            addBtn.TabIndex = 8;
-            addBtn.Text = "Add";
-            addBtn.UseVisualStyleBackColor = false;
-            addBtn.Click += button7_Click;
-            // 
-            // EmployeeGridView
-            // 
-            EmployeeGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            EmployeeGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            EmployeeGridView.Location = new Point(274, 175);
-            EmployeeGridView.Name = "EmployeeGridView";
-            EmployeeGridView.RowHeadersWidth = 51;
-            EmployeeGridView.Size = new Size(1070, 499);
-            EmployeeGridView.TabIndex = 7;
-            EmployeeGridView.CellContentClick += EmployeeGridView_CellContentClick;
+            sellItemGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            sellItemGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            sellItemGridView.Location = new Point(271, 104);
+            sellItemGridView.Name = "sellItemGridView";
+            sellItemGridView.RowHeadersWidth = 51;
+            sellItemGridView.Size = new Size(1091, 533);
+            sellItemGridView.TabIndex = 12;
+            sellItemGridView.CellContentClick += sellItemGridView_CellContentClick;
             // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1374, 686);
-            Controls.Add(addBtn);
-            Controls.Add(EmployeeGridView);
+            Controls.Add(sellItemGridView);
             Controls.Add(panel1);
             Name = "Index";
             StartPosition = FormStartPosition.CenterScreen;
@@ -204,13 +189,14 @@
             Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)EmployeeGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sellItemGridView).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
+        private Button button7;
         private Button button5;
         private Button button4;
         private Button button3;
@@ -219,8 +205,6 @@
         private Button button1;
         private Panel panel2;
         private Panel panel3;
-        private Button addBtn;
-        private DataGridView EmployeeGridView;
-        private Button button7;
+        private DataGridView sellItemGridView;
     }
 }

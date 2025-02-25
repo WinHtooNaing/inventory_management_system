@@ -18,6 +18,7 @@ namespace inventory_management_system.View.General
         {
             InitializeComponent();
             generalController = new GeneralController();
+            this.MaximizeBox = false;
         }
 
         private void Create_Load(object sender, EventArgs e)
@@ -29,7 +30,7 @@ namespace inventory_management_system.View.General
         {
             string name = nameTxt.Text;
             decimal price = decimal.Parse(priceTxt.Text);
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(priceTxt.Text) )
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(priceTxt.Text))
             {
                 MessageBox.Show("invalid input", "Add", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -53,6 +54,13 @@ namespace inventory_management_system.View.General
                 MessageBox.Show("Add Fail", "Added", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Index index = new Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

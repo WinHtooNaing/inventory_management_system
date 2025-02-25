@@ -133,6 +133,7 @@
             Name = "Create";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create";
+            Load += Create_Load;
             ResumeLayout(false);
             PerformLayout();
         }

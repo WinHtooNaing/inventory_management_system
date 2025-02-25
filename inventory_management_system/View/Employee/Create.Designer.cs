@@ -37,6 +37,7 @@
             roleTxt = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -45,9 +46,9 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(119, 553);
+            button1.Location = new Point(156, 553);
             button1.Name = "button1";
-            button1.Size = new Size(307, 56);
+            button1.Size = new Size(231, 56);
             button1.TabIndex = 19;
             button1.Text = "Add";
             button1.UseVisualStyleBackColor = false;
@@ -128,11 +129,25 @@
             label1.TabIndex = 10;
             label1.Text = "Add Employee";
             // 
+            // button2
+            // 
+            button2.BackColor = Color.CornflowerBlue;
+            button2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(12, 567);
+            button2.Name = "button2";
+            button2.Size = new Size(96, 42);
+            button2.TabIndex = 20;
+            button2.Text = "Back";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
             // Create
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(541, 692);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(salaryTxt);
@@ -144,6 +159,7 @@
             Controls.Add(label1);
             Name = "Create";
             Text = "Create";
+            Load += Create_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -159,5 +175,6 @@
         private TextBox roleTxt;
         private Label label2;
         private Label label1;
+        private Button button2;
     }
 }

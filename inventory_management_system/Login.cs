@@ -21,6 +21,7 @@ namespace inventory_management_system
 
             InitializeComponent();
             dbConnection = new DatabaseConnection();
+            this.MaximizeBox = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -53,26 +54,36 @@ namespace inventory_management_system
                     string userName = reader["Name"].ToString();
                     string userId = reader["UserId"].ToString();
                     int role = int.Parse(reader["Role"].ToString());
+                    int active = int.Parse(reader["Active"].ToString());
                     reader.Close();
                     dbConnection.CloseConnection();
                     idTxt.Text = "";
                     pwdTxt.Text = "";
                     SessionStorage.Session.UserName = userName;
                     SessionStorage.Session.UserId = userId;
-                    if (role == 1) {
-                        MessageBox.Show("Login Successfully", "Login ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Dashboard dashbaord = new Dashboard();
-                        dashbaord.Show();
-                        this.Hide();
-                    }
-                    if (role == 0)
+                    if (active == 0)
                     {
-                        MessageBox.Show("Login Successfully", "Login ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Seller.Dashboard dashboard = new Seller.Dashboard();
-                        dashboard.Show();
-                        this.Hide();
-                    }
+                        if (role == 1)
+                        {
+                            MessageBox.Show("Login Successfully", "Login ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Dashboard dashbaord = new Dashboard();
+                            dashbaord.Show();
+                            this.Hide();
+                        }
+                        if (role == 0)
+                        {
+                            MessageBox.Show("Login Successfully", "Login ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Seller.Dashboard dashboard = new Seller.Dashboard();
+                            dashboard.Show();
+                            this.Hide();
+                        }
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("This user has been banned", "Login ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
 
 
                 }
@@ -111,6 +122,11 @@ namespace inventory_management_system
             {
                 pwdTxt.PasswordChar = '*';
             }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

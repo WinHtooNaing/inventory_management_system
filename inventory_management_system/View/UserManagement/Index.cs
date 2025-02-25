@@ -50,15 +50,57 @@ namespace inventory_management_system.View.UserManagement
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            Create create = new Create();   
+            Create create = new Create();
             create.Show();
-            this.Hide();
         }
 
         private void Index_Load(object sender, EventArgs e)
         {
             LoadUsersIntoGrid();
+            userGridView.CellEndEdit += userGridView_CellEndEdit;
         }
+        private void userGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int rowIndex = e.RowIndex;
+                if (rowIndex >= 0)
+                {
+                    // Retrieve the employee ID
+                    int id = Convert.ToInt32(userGridView.Rows[rowIndex].Cells["Id"].Value);
+
+                    // Get updated values from the grid
+                    string name = userGridView.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    string userId = userGridView.Rows[rowIndex].Cells["UserId"].Value.ToString();
+                    string password = userGridView.Rows[rowIndex].Cells["Password"].Value.ToString();
+
+
+
+                    Model.User user = new Model.User
+                    {
+                        Id = id,
+                        Name = name,
+                        UserId = userId,
+                        Password = password
+                    };
+                    bool updateUser = userController.UpdateUser(user);
+                    if (updateUser)
+                    {
+                        MessageBox.Show("Edit Successful", "Edit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Edit Fail", "Edit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating employee: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void LoadUsersIntoGrid()
         {
             try
@@ -111,20 +153,7 @@ namespace inventory_management_system.View.UserManagement
                     toggleStatusColumn.DefaultCellStyle.ForeColor = Color.White;
                 }
 
-                // Add "Edit" button
-                if (!userGridView.Columns.Contains("Edit"))
-                {
-                    DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn
-                    {
-                        Name = "Edit",
-                        HeaderText = "",
-                        Text = "Edit",
-                        UseColumnTextForButtonValue = true
-                    };
-                    userGridView.Columns.Add(editColumn);
-                    editColumn.DefaultCellStyle.BackColor = Color.Orange;
-                    editColumn.DefaultCellStyle.ForeColor = Color.White;
-                }
+                
 
                 // Add "Delete" button
                 if (!userGridView.Columns.Contains("Delete"))
@@ -133,10 +162,14 @@ namespace inventory_management_system.View.UserManagement
                     {
                         Name = "Delete",
                         HeaderText = "",
-                        Text = "Delete",
+                        Text = "🗑", // Unicode trash icon
                         UseColumnTextForButtonValue = true
                     };
                     userGridView.Columns.Add(deleteColumn);
+
+                    // Optional: Style the button
+                    deleteColumn.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 12); // Use an emoji-supporting font
+                    deleteColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     deleteColumn.DefaultCellStyle.BackColor = Color.Red;
                     deleteColumn.DefaultCellStyle.ForeColor = Color.White;
                 }
@@ -154,12 +187,12 @@ namespace inventory_management_system.View.UserManagement
                     if (activeStatus == 1)
                     {
 
-                        userGridView.Rows[i].Cells["Edit"].Style.BackColor = Color.White;  // Hide text
+                        
                         userGridView.Rows[i].Cells["Delete"].Style.BackColor = Color.White;  // Hide text
                     }
                     else
                     {
-                        userGridView.Rows[i].Cells["Edit"].Style.ForeColor = Color.White;
+                        
                         userGridView.Rows[i].Cells["Delete"].Style.ForeColor = Color.White;
                     }
                 }
@@ -167,11 +200,12 @@ namespace inventory_management_system.View.UserManagement
                 // Hide the "Id" and "Password" columns
                 if (userGridView.Columns.Contains("Id"))
                     userGridView.Columns["Id"].Visible = false;
-                if (userGridView.Columns.Contains("Password"))
-                    userGridView.Columns["Password"].Visible = false;
                 if (userGridView.Columns.Contains("Role"))
                     userGridView.Columns["Role"].Visible = false;
 
+                userGridView.Columns["Name"].ReadOnly = false;
+                userGridView.Columns["UserId"].ReadOnly = false;
+                userGridView.Columns["Password"].ReadOnly = false;
 
                 // Auto-size columns
                 userGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -182,12 +216,7 @@ namespace inventory_management_system.View.UserManagement
             }
         }
 
-        public void EditUser(int userId)
-        {
-            Edit edit = new Edit(userId);
-            edit.Show();
-            this.Hide();
-        }
+        
         public void DeleteUser(int userId)
         {
 
@@ -216,11 +245,7 @@ namespace inventory_management_system.View.UserManagement
                 int userId = Convert.ToInt32(userGridView.Rows[e.RowIndex].Cells["Id"].Value);
                 int currentStatus = Convert.ToInt32(userGridView.Rows[e.RowIndex].Cells["Active"].Value);
 
-                if (e.ColumnIndex == userGridView.Columns["Edit"].Index && currentStatus == 0)
-                {
-                    EditUser(userId);
-                }
-                else if (e.ColumnIndex == userGridView.Columns["Delete"].Index && currentStatus == 0)
+                if (e.ColumnIndex == userGridView.Columns["Delete"].Index && currentStatus == 0)
                 {
                     DeleteUser(userId);
                 }
@@ -243,6 +268,22 @@ namespace inventory_management_system.View.UserManagement
                 }
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SessionStorage.Session.UserName = "";
+            SessionStorage.Session.UserId = "";
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SellItem.Index index = new SellItem.Index();
+            index.Show();
+            this.Hide();
+        }
     }
-    }
+}
 

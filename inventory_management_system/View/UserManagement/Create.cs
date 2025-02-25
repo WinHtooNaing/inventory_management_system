@@ -18,6 +18,7 @@ namespace inventory_management_system.View.UserManagement
         {
             InitializeComponent();
             userController = new UserController();
+            this.MaximizeBox = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -51,6 +52,11 @@ namespace inventory_management_system.View.UserManagement
             {
                 MessageBox.Show("Failed to add", "Create User", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Create_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

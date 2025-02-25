@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using inventory_management_system.Controller;
+using inventory_management_system.View.UserManagement;
 using Microsoft.Data.SqlClient;
 
 namespace inventory_management_system.View.Item
@@ -55,17 +56,12 @@ namespace inventory_management_system.View.Item
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ensure the clicked cell is a button
-            if (e.RowIndex >= 0 && (e.ColumnIndex == itemGridView.Columns["Edit"].Index || e.ColumnIndex == itemGridView.Columns["Delete"].Index))
+            if (e.RowIndex >= 0 && ( e.ColumnIndex == itemGridView.Columns["Delete"].Index))
             {
                 // Get the selected product's ID
                 int itemId = Convert.ToInt32(itemGridView.Rows[e.RowIndex].Cells["Id"].Value);
 
-                if (e.ColumnIndex == itemGridView.Columns["Edit"].Index)
-                {
-                    // Edit button clicked
-                    EditItem(itemId);
-                }
-                else if (e.ColumnIndex == itemGridView.Columns["Delete"].Index)
+                if (e.ColumnIndex == itemGridView.Columns["Delete"].Index)
                 {
                     // Delete button clicked
                     DeleteItem(itemId);
@@ -82,13 +78,61 @@ namespace inventory_management_system.View.Item
         {
             Create create = new Create();
             create.Show();
-            this.Hide();
         }
 
         private void Index_Load(object sender, EventArgs e)
         {
             LoadItemsIntoGrid("");
+            itemGridView.CellEndEdit += ItemGridView_CellEndEdit;
         }
+        private void ItemGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int rowIndex = e.RowIndex;
+                if (rowIndex >= 0)
+                {
+                    // Retrieve the employee ID
+                    int itemId = Convert.ToInt32(itemGridView.Rows[rowIndex].Cells["Id"].Value);
+
+                    // Get updated values from the grid
+                    string type = itemGridView.Rows[rowIndex].Cells["Types"].Value.ToString();
+                    string category = itemGridView.Rows[rowIndex].Cells["Category"].Value.ToString();
+                    int qty = Convert.ToInt32(itemGridView.Rows[rowIndex].Cells["Quantity"].Value);
+                    decimal purchase = Convert.ToDecimal(itemGridView.Rows[rowIndex].Cells["PurchasePrice"].Value);
+                    decimal selling = Convert.ToDecimal(itemGridView.Rows[rowIndex].Cells["SellingPrice"].Value);
+
+
+                    Model.Item newItem = new Model.Item
+                    {
+                        Id = itemId,
+                        Types = type,
+                        Category = category,
+                        Quantity = qty,
+                        PurchasePrice = purchase,
+                        SellingPrice = selling,
+
+                    };
+                    bool isAdded = itemController.UpdateItem(newItem);
+
+                    if (isAdded)
+                    {
+                        MessageBox.Show("Item updated successfully", "Update Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to update", "Update Item", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating employee: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void LoadItemsIntoGrid(string searchItem = "")
         {
             try
@@ -119,20 +163,7 @@ namespace inventory_management_system.View.Item
                     itemGridView.Columns.Insert(0, noColumn);
                 }
 
-                // Add Edit button
-                if (!itemGridView.Columns.Contains("Edit"))
-                {
-                    DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn
-                    {
-                        Name = "Edit",
-                        HeaderText = "",
-                        Text = "Edit",
-                        UseColumnTextForButtonValue = true
-                    };
-                    itemGridView.Columns.Add(editColumn);
-                    editColumn.DefaultCellStyle.BackColor = Color.Orange;
-                    editColumn.DefaultCellStyle.ForeColor = Color.White;
-                }
+                
 
                 // Add Delete button
                 if (!itemGridView.Columns.Contains("Delete"))
@@ -141,10 +172,13 @@ namespace inventory_management_system.View.Item
                     {
                         Name = "Delete",
                         HeaderText = "",
-                        Text = "Delete",
+                        Text = "🗑", // Unicode trash icon
                         UseColumnTextForButtonValue = true
                     };
                     itemGridView.Columns.Add(deleteColumn);
+                    // Optional: Style the button
+                    deleteColumn.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 12); // Use an emoji-supporting font
+                    deleteColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     deleteColumn.DefaultCellStyle.BackColor = Color.Red;
                     deleteColumn.DefaultCellStyle.ForeColor = Color.White;
                 }
@@ -155,6 +189,13 @@ namespace inventory_management_system.View.Item
                     itemGridView.Rows[i].Cells["No"].Value = i + 1;
                 }
 
+                itemGridView.Columns["Types"].ReadOnly = false;
+                itemGridView.Columns["PurchasePrice"].ReadOnly = false;
+                itemGridView.Columns["SellingPrice"].ReadOnly = false;
+                itemGridView.Columns["Quantity"].ReadOnly = false;
+                itemGridView.Columns["Category"].ReadOnly = true;
+
+
                 // Customize the DataGridView
                 itemGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -163,18 +204,17 @@ namespace inventory_management_system.View.Item
                 {
                     itemGridView.Columns["Id"].Visible = false; // Hide the ID column
                 }
+                if (itemGridView.Columns.Contains("CreatedAt"))
+                {
+                    itemGridView.Columns["CreatedAt"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading products: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void EditItem(int itemId)
-        {
-            Edit edit = new Edit(itemId);
-            edit.Show();
-            this.Hide();
-        }
+        
         public void DeleteItem(int itemId)
         {
 
@@ -204,8 +244,24 @@ namespace inventory_management_system.View.Item
 
         private void clearBtn_Click(object sender, EventArgs e)
         {
-searchTxt.Text = "";
+            searchTxt.Text = "";
             LoadItemsIntoGrid("");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SessionStorage.Session.UserName = "";
+            SessionStorage.Session.UserId = "";
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            SellItem.Index index = new SellItem.Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

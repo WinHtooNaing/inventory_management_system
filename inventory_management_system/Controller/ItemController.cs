@@ -17,7 +17,7 @@ namespace inventory_management_system.Controller
         // CREATE (Add a new Item)
         public bool AddProduct(Item item)
         {
-            string query = "INSERT INTO Items (Types, Quantity, PurchasePrice, SellingPrice) VALUES (@Types, @Quantity, @PurchasePrice, @SellingPrice)";
+            string query = "INSERT INTO Items (Types, Quantity, PurchasePrice, SellingPrice,Category) VALUES (@Types, @Quantity, @PurchasePrice, @SellingPrice,@Category)";
 
             try
             {
@@ -28,6 +28,7 @@ namespace inventory_management_system.Controller
                 cmd.Parameters.AddWithValue("@Quantity",item.Quantity);
                 cmd.Parameters.AddWithValue("@PurchasePrice", item.PurchasePrice);
                 cmd.Parameters.AddWithValue("@SellingPrice", item.SellingPrice);
+                cmd.Parameters.AddWithValue("@Category",item.Category);
                int rowAffected =  cmd.ExecuteNonQuery();
                 return rowAffected > 0;
 
@@ -64,10 +65,11 @@ namespace inventory_management_system.Controller
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Types = reader["Types"].ToString(),
+                        Category = reader["Category"].ToString(),
                         Quantity = Convert.ToInt32(reader["Quantity"]),
                         PurchasePrice = Convert.ToDecimal(reader["PurchasePrice"]),
                         SellingPrice = Convert.ToDecimal(reader["SellingPrice"]),
-                        CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
+                        CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
                     };
                     items.Add(item);
                 }
@@ -130,6 +132,8 @@ namespace inventory_management_system.Controller
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Types = reader["Types"].ToString(),
+                        Category = reader["Category"].ToString(),
+
                         Quantity = Convert.ToInt32(reader["Quantity"]),
                         PurchasePrice = Convert.ToDecimal(reader["PurchasePrice"]),
                         SellingPrice = Convert.ToDecimal(reader["SellingPrice"]),
@@ -152,7 +156,7 @@ namespace inventory_management_system.Controller
         // UPDATE (Modify an existing item)
         public bool UpdateItem(Item item)
         {
-            string query = "UPDATE Items SET Types=@Types, Quantity=@Quantity, PurchasePrice=@PurchasePrice, SellingPrice=@SellingPrice WHERE Id=@Id";
+            string query = "UPDATE Items SET Types=@Types, Quantity=@Quantity, PurchasePrice=@PurchasePrice, SellingPrice=@SellingPrice , Category=@Category WHERE Id=@Id";
 
             try
             {
@@ -164,6 +168,7 @@ namespace inventory_management_system.Controller
                 cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
                 cmd.Parameters.AddWithValue("@PurchasePrice", item.PurchasePrice);
                 cmd.Parameters.AddWithValue("@SellingPrice", item.SellingPrice);
+                cmd.Parameters.AddWithValue("@Category", item.Category);
 
                 int rowAffected = cmd.ExecuteNonQuery();
                 return rowAffected > 0;

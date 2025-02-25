@@ -19,6 +19,7 @@ namespace inventory_management_system.View.Item
         {
             InitializeComponent();
             itemcontroller = new ItemController();
+            this.MaximizeBox = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -34,16 +35,19 @@ namespace inventory_management_system.View.Item
         private void button1_Click(object sender, EventArgs e)
         {
             string type = typeTxt.Text;
+            string category = categoryTxt.SelectedItem.ToString();
             int qty = int.Parse(qtyTxt.Text);
             decimal purchase = decimal.Parse(purchaseTxt.Text);
             decimal selling = decimal.Parse(sellingTxt.Text);
-            if (string.IsNullOrEmpty(type) || string.IsNullOrEmpty(qtyTxt.Text) || string.IsNullOrEmpty(purchaseTxt.Text)|| string.IsNullOrEmpty(sellingTxt.Text) ) { 
+            if (string.IsNullOrEmpty(type) || string.IsNullOrEmpty(category) || string.IsNullOrEmpty(qtyTxt.Text) || string.IsNullOrEmpty(purchaseTxt.Text) || string.IsNullOrEmpty(sellingTxt.Text))
+            {
                 MessageBox.Show("Data Empty", "Create Item", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             Model.Item newItem = new Model.Item
             {
                 Types = type,
+                Category = category,
                 Quantity = qty,
                 PurchasePrice = purchase,
                 SellingPrice = selling,
@@ -63,6 +67,11 @@ namespace inventory_management_system.View.Item
             {
                 MessageBox.Show("Failed to add", "Create Item", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Create_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

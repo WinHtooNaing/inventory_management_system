@@ -13,7 +13,7 @@ namespace inventory_management_system.Model
         public int Number { get; set; }
         public decimal Salary { get; set; }
 
-
+        public DateTime CreatedAt { get; set; }
 
 
     }

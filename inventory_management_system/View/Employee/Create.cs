@@ -19,6 +19,7 @@ namespace inventory_management_system.View.Employee
         {
             InitializeComponent();
             employeeController = new EmployeeController();
+            this.MaximizeBox = false;
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -30,11 +31,12 @@ namespace inventory_management_system.View.Employee
         {
             string EmpRole = roleTxt.Text;
             int Number = int.Parse(numberTxt.Text);
-            decimal Salary=decimal.Parse(salaryTxt.Text);
-            if (string.IsNullOrEmpty(EmpRole)||string.IsNullOrEmpty(numberTxt.Text)||string.IsNullOrEmpty(salaryTxt.Text)) {
-            MessageBox.Show("invalid input","Add",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            decimal Salary = decimal.Parse(salaryTxt.Text);
+            if (string.IsNullOrEmpty(EmpRole) || string.IsNullOrEmpty(numberTxt.Text) || string.IsNullOrEmpty(salaryTxt.Text))
+            {
+                MessageBox.Show("invalid input", "Add", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            
+
             }
             Model.Employee employee = new Model.Employee
             {
@@ -47,7 +49,7 @@ namespace inventory_management_system.View.Employee
             if (AddEmp)
             {
                 MessageBox.Show("Add Successful", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Index index=new Index();
+                Index index = new Index();
                 index.Show();
                 this.Hide();
             }
@@ -56,6 +58,18 @@ namespace inventory_management_system.View.Employee
                 MessageBox.Show("Add Fail", "Added", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Index index = new Index();
+            index.Show();
+            this.Hide();
+        }
+
+        private void Create_Load(object sender, EventArgs e)
+        {
 
         }
     }

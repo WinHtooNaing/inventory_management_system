@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -53,13 +54,51 @@ namespace inventory_management_system.View.General
         private void Index_Load(object sender, EventArgs e)
         {
             LoadGeneralIntoGrid();
+            GeneralGridView.CellEndEdit += GeneralGridView_CellEndEdit;
         }
+        private void GeneralGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                int rowIndex = e.RowIndex;
+                if (rowIndex >= 0)
+                {
+                    // Retrieve the employee ID
+                    int generalId = Convert.ToInt32(GeneralGridView.Rows[rowIndex].Cells["Id"].Value);
+
+                    // Get updated values from the grid
+                    string name = GeneralGridView.Rows[rowIndex].Cells["Name"].Value.ToString();
+                    decimal price = Convert.ToDecimal(GeneralGridView.Rows[rowIndex].Cells["Price"].Value);
+
+                    Model.General general = new Model.General
+                    {
+                        Id = generalId,
+                        Name = name,
+                        Price = price,
+                    };
+                    bool updateGeneral = generalController.UpdateGeneral(general);
+                    if (updateGeneral)
+                    {
+                        MessageBox.Show("Edit Successful", "Edit", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Edit Fail", "Edit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating employee: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
 
         private void addBtn_Click(object sender, EventArgs e)
         {
             Create create = new Create();
             create.Show();
-            this.Hide();
         }
         private void LoadGeneralIntoGrid()
         {
@@ -86,20 +125,7 @@ namespace inventory_management_system.View.General
                     GeneralGridView.Columns.Insert(0, noColumn);
                 }
 
-                // Add Edit button
-                if (!GeneralGridView.Columns.Contains("Edit"))
-                {
-                    DataGridViewButtonColumn editColumn = new DataGridViewButtonColumn
-                    {
-                        Name = "Edit",
-                        HeaderText = "",
-                        Text = "Edit",
-                        UseColumnTextForButtonValue = true
-                    };
-                    GeneralGridView.Columns.Add(editColumn);
-                    editColumn.DefaultCellStyle.BackColor = Color.Orange;
-                    editColumn.DefaultCellStyle.ForeColor = Color.White;
-                }
+                
 
                 // Add Delete button
                 if (!GeneralGridView.Columns.Contains("Delete"))
@@ -108,12 +134,17 @@ namespace inventory_management_system.View.General
                     {
                         Name = "Delete",
                         HeaderText = "",
-                        Text = "Delete",
+                        Text = "🗑", // Unicode trash icon
                         UseColumnTextForButtonValue = true
                     };
                     GeneralGridView.Columns.Add(deleteColumn);
+                    // Optional: Style the button
+                    deleteColumn.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 12); // Use an emoji-supporting font
+                    deleteColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
                     deleteColumn.DefaultCellStyle.BackColor = Color.Red;
-                    deleteColumn.DefaultCellStyle.ForeColor = Color.White;
+                    deleteColumn.DefaultCellStyle.ForeColor = Color.Red;
                 }
 
                 // Populate "No" column with sequential numbers
@@ -121,6 +152,9 @@ namespace inventory_management_system.View.General
                 {
                     GeneralGridView.Rows[i].Cells["No"].Value = i + 1;
                 }
+
+                GeneralGridView.Columns["Name"].ReadOnly = false;
+                GeneralGridView.Columns["Price"].ReadOnly = false;
 
                 // Customize the DataGridView
                 GeneralGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -140,12 +174,7 @@ namespace inventory_management_system.View.General
                 MessageBox.Show("Error loading general: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        public void EditGeneral(int generalId)
-        {
-            Edit edit = new Edit(generalId);
-            edit.Show();
-            this.Hide();
-        }
+        
         public void DeleteGeneral(int generalId)
         {
 
@@ -170,22 +199,34 @@ namespace inventory_management_system.View.General
         private void GeneralGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ensure the clicked cell is a button
-            if (e.RowIndex >= 0 && (e.ColumnIndex == GeneralGridView.Columns["Edit"].Index || e.ColumnIndex == GeneralGridView.Columns["Delete"].Index))
+            if (e.RowIndex >= 0 && (e.ColumnIndex == GeneralGridView.Columns["Delete"].Index))
             {
                 // Get the selected employee's ID
                 int generalId = Convert.ToInt32(GeneralGridView.Rows[e.RowIndex].Cells["Id"].Value);
 
-                if (e.ColumnIndex == GeneralGridView.Columns["Edit"].Index)
-                {
-                    // Edit button clicked
-                    EditGeneral(generalId);
-                }
-                else if (e.ColumnIndex == GeneralGridView.Columns["Delete"].Index)
+                
+                if (e.ColumnIndex == GeneralGridView.Columns["Delete"].Index)
                 {
                     // Delete button clicked
                     DeleteGeneral(generalId);
                 }
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SessionStorage.Session.UserName = "";
+            SessionStorage.Session.UserId = "";
+            Login login = new Login();
+            login.Show();
+            this.Hide();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SellItem.Index index = new SellItem.Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

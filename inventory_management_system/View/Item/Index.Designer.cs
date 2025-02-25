@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button8 = new Button();
             button5 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -49,7 +50,9 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button8);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
@@ -61,6 +64,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 685);
             panel1.TabIndex = 1;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.White;
+            button8.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button8.Location = new Point(0, 460);
+            button8.Name = "button8";
+            button8.Size = new Size(250, 75);
+            button8.TabIndex = 11;
+            button8.Text = "SellItem";
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // button5
             // 
@@ -112,6 +127,7 @@
             // 
             // button6
             // 
+            button6.Anchor = AnchorStyles.Bottom;
             button6.BackColor = Color.Red;
             button6.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button6.ForeColor = Color.White;
@@ -121,6 +137,7 @@
             button6.TabIndex = 6;
             button6.Text = "Logout";
             button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // button1
             // 
@@ -152,6 +169,7 @@
             // 
             // itemGridView
             // 
+            itemGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             itemGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             itemGridView.Location = new Point(280, 162);
             itemGridView.Name = "itemGridView";
@@ -166,9 +184,9 @@
             button7.FlatStyle = FlatStyle.Flat;
             button7.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button7.ForeColor = Color.White;
-            button7.Location = new Point(280, 94);
+            button7.Location = new Point(280, 84);
             button7.Name = "button7";
-            button7.Size = new Size(135, 49);
+            button7.Size = new Size(185, 59);
             button7.TabIndex = 3;
             button7.Text = "Add";
             button7.UseVisualStyleBackColor = false;
@@ -176,22 +194,24 @@
             // 
             // searchTxt
             // 
-            searchTxt.Location = new Point(808, 94);
+            searchTxt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchTxt.Location = new Point(791, 84);
             searchTxt.Multiline = true;
             searchTxt.Name = "searchTxt";
-            searchTxt.Size = new Size(224, 49);
+            searchTxt.Size = new Size(241, 59);
             searchTxt.TabIndex = 4;
             searchTxt.TextChanged += textBox1_TextChanged;
             // 
             // searchBtn
             // 
+            searchBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             searchBtn.BackColor = Color.CornflowerBlue;
             searchBtn.FlatStyle = FlatStyle.Flat;
             searchBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchBtn.ForeColor = Color.White;
-            searchBtn.Location = new Point(1058, 94);
+            searchBtn.Location = new Point(1058, 84);
             searchBtn.Name = "searchBtn";
-            searchBtn.Size = new Size(135, 49);
+            searchBtn.Size = new Size(135, 59);
             searchBtn.TabIndex = 5;
             searchBtn.Text = "Search";
             searchBtn.UseVisualStyleBackColor = false;
@@ -199,13 +219,14 @@
             // 
             // clearBtn
             // 
+            clearBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             clearBtn.BackColor = Color.Red;
             clearBtn.FlatStyle = FlatStyle.Flat;
             clearBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             clearBtn.ForeColor = Color.White;
-            clearBtn.Location = new Point(1215, 94);
+            clearBtn.Location = new Point(1215, 84);
             clearBtn.Name = "clearBtn";
-            clearBtn.Size = new Size(135, 49);
+            clearBtn.Size = new Size(135, 59);
             clearBtn.TabIndex = 6;
             clearBtn.Text = "Clear";
             clearBtn.UseVisualStyleBackColor = false;
@@ -225,6 +246,7 @@
             Name = "Index";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Index";
+            WindowState = FormWindowState.Maximized;
             Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
@@ -249,5 +271,6 @@
         private TextBox searchTxt;
         private Button searchBtn;
         private Button clearBtn;
+        private Button button8;
     }
 }

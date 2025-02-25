@@ -1,4 +1,5 @@
 
+using inventory_management_system.Model;
 using inventory_management_system.View;
 
 namespace inventory_management_system

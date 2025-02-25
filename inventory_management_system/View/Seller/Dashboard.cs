@@ -204,11 +204,14 @@ namespace inventory_management_system.Seller
                     {
                         Name = "Delete",
                         HeaderText = "",
-                        Text = "Delete",
+                        Text = "🗑", // Unicode trash icon
                         UseColumnTextForButtonValue = true
                     };
                     fakeDataGridView.Columns.Add(deleteCoulmn);
-                    deleteCoulmn.DefaultCellStyle.BackColor = Color.Orange;
+                    // Optional: Style the button
+                    deleteCoulmn.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 12); // Use an emoji-supporting font
+                    deleteCoulmn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    deleteCoulmn.DefaultCellStyle.BackColor = Color.Red;
                     deleteCoulmn.DefaultCellStyle.ForeColor = Color.White;
                 }
 
@@ -333,6 +336,7 @@ namespace inventory_management_system.Seller
                     {
                         TypeId = itemId,
                         Type = item.Types,
+                        Category = item.Category,
                         Price = item.SellingPrice,
 
 
@@ -380,6 +384,7 @@ namespace inventory_management_system.Seller
                 {
                     int typeId = Convert.ToInt32(row.Cells["TypeId"].Value);
                     string type = row.Cells["Type"].Value.ToString();
+                    string category = row.Cells["Category"].Value.ToString();
                     decimal price = Convert.ToDecimal(row.Cells["Price"].Value);
                     int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                     string sellerName = SessionStorage.Session.UserName; // Seller name stored in session.
@@ -397,6 +402,7 @@ namespace inventory_management_system.Seller
                             Model.SellItem sellItem = new Model.SellItem
                             {
                                 Type = type,
+                                Category = category,
                                 Price = price,
                                 Quantity = quantity,
                                 

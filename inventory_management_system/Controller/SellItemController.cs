@@ -16,8 +16,8 @@ namespace inventory_management_system.Controller
         }
         public bool SellItem(SellItem item)
         {
-            string query = "INSERT SellItem (Type, Price, Quantity, TotalPrice,SellerName) " +
-                           "VALUES (@Type, @Price, @Quantity, @TotalPrice,@SellerName)";
+            string query = "INSERT SellItem (Type, Price, Quantity, TotalPrice,SellerName,Category) " +
+                           "VALUES (@Type, @Price, @Quantity, @TotalPrice,@SellerName,@Category)";
 
             try
             {
@@ -29,6 +29,7 @@ namespace inventory_management_system.Controller
                 cmd.Parameters.AddWithValue("@Quantity", item.Quantity);
                 cmd.Parameters.AddWithValue("@TotalPrice", item.TotalPrice);
                 cmd.Parameters.AddWithValue("@SellerName", item.SellerName);
+                cmd.Parameters.AddWithValue("@Category",item.Category);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;
@@ -43,6 +44,45 @@ namespace inventory_management_system.Controller
             {
                 databaseConnection.CloseConnection();
             }
+        }
+
+        public List<SellItem> GetAllSellItems()
+        {
+            List<SellItem> items = new List<SellItem>();
+            string query = "select * from SellItem";
+            try
+            {
+
+                databaseConnection.OpenConnection();
+                SqlConnection connection = databaseConnection.GetConnection();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                SqlDataReader reader=cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    SellItem item = new SellItem
+                    {
+                        Id = Convert.ToInt32(reader["Id"]),
+                        Type = reader["Type"].ToString(),
+                        Category = reader["Category"].ToString(),
+                        Price = Convert.ToDecimal(reader["Price"]),
+                        Quantity = Convert.ToInt32(reader["Quantity"]),
+                        TotalPrice = Convert.ToDecimal(reader["TotalPrice"]),
+                        SellerName = reader["SellerName"].ToString()
+
+                    };
+                    items.Add(item);
+
+                }
+                reader.Close();
+            }
+            catch (Exception ex) { 
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                databaseConnection.CloseConnection();
+            }
+            return items;   
         }
     }
 }

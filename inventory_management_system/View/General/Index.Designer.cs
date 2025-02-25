@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button7 = new Button();
             button5 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -46,7 +47,9 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button7);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
             panel1.Controls.Add(button3);
@@ -58,6 +61,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 685);
             panel1.TabIndex = 1;
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.White;
+            button7.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button7.Location = new Point(0, 458);
+            button7.Name = "button7";
+            button7.Size = new Size(250, 75);
+            button7.TabIndex = 11;
+            button7.Text = "SellItem";
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // button5
             // 
@@ -109,6 +124,7 @@
             // 
             // button6
             // 
+            button6.Anchor = AnchorStyles.Bottom;
             button6.BackColor = Color.Red;
             button6.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button6.ForeColor = Color.White;
@@ -118,6 +134,7 @@
             button6.TabIndex = 6;
             button6.Text = "Logout";
             button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
             // 
             // button1
             // 
@@ -153,9 +170,9 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
-            addBtn.Location = new Point(280, 107);
+            addBtn.Location = new Point(280, 98);
             addBtn.Name = "addBtn";
-            addBtn.Size = new Size(135, 49);
+            addBtn.Size = new Size(189, 58);
             addBtn.TabIndex = 10;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = false;
@@ -163,11 +180,12 @@
             // 
             // GeneralGridView
             // 
+            GeneralGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             GeneralGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             GeneralGridView.Location = new Point(280, 175);
             GeneralGridView.Name = "GeneralGridView";
             GeneralGridView.RowHeadersWidth = 51;
-            GeneralGridView.Size = new Size(1070, 512);
+            GeneralGridView.Size = new Size(1070, 499);
             GeneralGridView.TabIndex = 9;
             GeneralGridView.CellContentClick += GeneralGridView_CellContentClick;
             // 
@@ -182,6 +200,7 @@
             Name = "Index";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Index";
+            WindowState = FormWindowState.Maximized;
             Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
@@ -202,5 +221,6 @@
         private Panel panel3;
         private Button addBtn;
         private DataGridView GeneralGridView;
+        private Button button7;
     }
 }

@@ -64,6 +64,7 @@ namespace inventory_management_system.Controller
                         Name = reader["Name"].ToString(),
                         UserId = reader["UserId"].ToString(),
                         Active = Convert.ToInt32(reader["Active"]),
+                        Password = reader["Password"].ToString(),
 
 
                     };
