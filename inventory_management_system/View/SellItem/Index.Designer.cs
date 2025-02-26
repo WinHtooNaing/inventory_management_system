@@ -39,6 +39,9 @@
             panel2 = new Panel();
             panel3 = new Panel();
             sellItemGridView = new DataGridView();
+            clearBtn = new Button();
+            searchBtn = new Button();
+            searchTxt = new TextBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sellItemGridView).BeginInit();
@@ -175,11 +178,53 @@
             sellItemGridView.TabIndex = 12;
             sellItemGridView.CellContentClick += sellItemGridView_CellContentClick;
             // 
+            // clearBtn
+            // 
+            clearBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            clearBtn.BackColor = Color.Red;
+            clearBtn.FlatStyle = FlatStyle.Flat;
+            clearBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clearBtn.ForeColor = Color.White;
+            clearBtn.Location = new Point(1226, 39);
+            clearBtn.Name = "clearBtn";
+            clearBtn.Size = new Size(135, 59);
+            clearBtn.TabIndex = 15;
+            clearBtn.Text = "Clear";
+            clearBtn.UseVisualStyleBackColor = false;
+            clearBtn.Click += clearBtn_Click;
+            // 
+            // searchBtn
+            // 
+            searchBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchBtn.BackColor = Color.CornflowerBlue;
+            searchBtn.FlatStyle = FlatStyle.Flat;
+            searchBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchBtn.ForeColor = Color.White;
+            searchBtn.Location = new Point(1069, 39);
+            searchBtn.Name = "searchBtn";
+            searchBtn.Size = new Size(135, 59);
+            searchBtn.TabIndex = 14;
+            searchBtn.Text = "Search";
+            searchBtn.UseVisualStyleBackColor = false;
+            searchBtn.Click += searchBtn_Click;
+            // 
+            // searchTxt
+            // 
+            searchTxt.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            searchTxt.Location = new Point(802, 39);
+            searchTxt.Multiline = true;
+            searchTxt.Name = "searchTxt";
+            searchTxt.Size = new Size(241, 59);
+            searchTxt.TabIndex = 13;
+            // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1374, 686);
+            Controls.Add(clearBtn);
+            Controls.Add(searchBtn);
+            Controls.Add(searchTxt);
             Controls.Add(sellItemGridView);
             Controls.Add(panel1);
             Name = "Index";
@@ -191,6 +236,7 @@
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)sellItemGridView).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -206,5 +252,8 @@
         private Panel panel2;
         private Panel panel3;
         private DataGridView sellItemGridView;
+        private Button clearBtn;
+        private Button searchBtn;
+        private TextBox searchTxt;
     }
 }

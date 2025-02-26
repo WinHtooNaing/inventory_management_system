@@ -37,6 +37,7 @@
             totalPriceTxt = new Label();
             cancleBtn = new Button();
             sellBtn = new Button();
+            linkLabel1 = new LinkLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)itemGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fakeDataGridView).BeginInit();
@@ -46,6 +47,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.BackColor = SystemColors.Control;
+            panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(sellerNameLabel);
             panel1.Controls.Add(Logout);
             panel1.Controls.Add(panel2);
@@ -150,6 +152,18 @@
             sellBtn.UseVisualStyleBackColor = false;
             sellBtn.Click += sellBtn_Click;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(1210, 29);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(94, 20);
+            linkLabel1.TabIndex = 3;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Daily Record";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -185,5 +199,6 @@
         private Label totalPriceTxt;
         private Button cancleBtn;
         private Button sellBtn;
+        private LinkLabel linkLabel1;
     }
 }

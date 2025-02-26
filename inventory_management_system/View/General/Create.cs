@@ -45,8 +45,7 @@ namespace inventory_management_system.View.General
             if (AddGeneral)
             {
                 MessageBox.Show("Add Successful", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Index index = new Index();
-                index.Show();
+               
                 this.Hide();
             }
             else

@@ -151,7 +151,7 @@ namespace inventory_management_system.View.Item
                 if (!string.IsNullOrEmpty(searchItem))
                 {
                     items = items.Where(
-                        item => item.Types.Contains(searchItem, StringComparison.OrdinalIgnoreCase)
+                        item => item.Category.Contains(searchItem, StringComparison.OrdinalIgnoreCase)
                         ).ToList();
                 }
 
@@ -197,11 +197,11 @@ namespace inventory_management_system.View.Item
                     itemGridView.Rows[i].Cells["No"].Value = i + 1;
                 }
 
-                itemGridView.Columns["Types"].ReadOnly = false;
+                itemGridView.Columns["Types"].ReadOnly = true;
                 itemGridView.Columns["PurchasePrice"].ReadOnly = false;
                 itemGridView.Columns["SellingPrice"].ReadOnly = false;
                 itemGridView.Columns["Quantity"].ReadOnly = false;
-                itemGridView.Columns["Category"].ReadOnly = true;
+                itemGridView.Columns["Category"].ReadOnly = false;
 
 
                 // Customize the DataGridView

@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using inventory_management_system.Controller;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using System.Diagnostics;
+using inventory_management_system.View.Seller;
 
 namespace inventory_management_system.Seller
 {
@@ -209,7 +213,7 @@ namespace inventory_management_system.Seller
                     };
                     fakeDataGridView.Columns.Add(deleteCoulmn);
                     // Optional: Style the button
-                    deleteCoulmn.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 12); // Use an emoji-supporting font
+                    // deleteCoulmn.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 12); // Use an emoji-supporting font
                     deleteCoulmn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     deleteCoulmn.DefaultCellStyle.BackColor = Color.Red;
                     deleteCoulmn.DefaultCellStyle.ForeColor = Color.White;
@@ -375,9 +379,111 @@ namespace inventory_management_system.Seller
                 MessageBox.Show("product deleted fail", "Seller Delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void GeneratePDF(List<Model.SellItem> soldItems)
+        {
+            try
+            {
+                // Define the PDF file path
+                string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "SalesReceipt.pdf");
 
+                // Load the Myanmar font
+                // string fontPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Fonts", "Padauk-Regular.ttf"); // Path to the font file
+                string fontPath = @"C:\\Users\\user\\Desktop\\csharp\\inventory_management_system\\inventory_management_system\\Fonts\\Padauk-Regular.ttf";
+                BaseFont myanmarFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                iTextSharp.text.Font myanmarTextFont = new iTextSharp.text.Font(myanmarFont, 12);
+
+
+
+                // Check if the directory exists
+                string directory = Path.GetDirectoryName(filePath);
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                // Create a new PDF document
+                Document doc = new Document();
+                PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
+
+                doc.Open();
+
+                // Add a title
+                iTextSharp.text.Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18);
+                Paragraph title = new Paragraph("Sales Receipt\n\n", titleFont);
+                title.Alignment = Element.ALIGN_CENTER;
+                doc.Add(title);
+
+                // Add date and seller info
+                doc.Add(new Paragraph($"Date: {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}\n"));
+                doc.Add(new Paragraph($"Seller: {SessionStorage.Session.UserName}\n\n"));
+
+                // Create a table with 5 columns
+                PdfPTable table = new PdfPTable(5);
+                table.WidthPercentage = 100;
+                table.SetWidths(new float[] { 30, 100, 100, 50, 80 });
+
+                // Add table headers
+                table.AddCell("No");
+                table.AddCell("Item");
+                table.AddCell("Category");
+                table.AddCell("Quantity");
+                table.AddCell("Total Price (Kyats)");
+
+                // Add items to the table
+                int index = 1;
+                decimal grandTotal = 0;
+
+                foreach (var item in soldItems)
+                {
+                    table.AddCell(index.ToString());
+                    table.AddCell(new Phrase(item.Category, myanmarTextFont));
+                    table.AddCell(new Phrase(item.Type, myanmarTextFont));
+                    table.AddCell(item.Quantity.ToString());
+                    table.AddCell(item.TotalPrice.ToString("N2"));
+
+                    grandTotal += item.TotalPrice;
+                    index++;
+                }
+
+                // Add total row
+                PdfPCell totalCell = new PdfPCell(new Phrase("Total Price", FontFactory.GetFont(FontFactory.HELVETICA_BOLD)));
+                totalCell.Colspan = 4;
+                totalCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                table.AddCell(totalCell);
+                table.AddCell(grandTotal.ToString("N2") + " Kyats");
+
+                // Add the table to the document
+                doc.Add(table);
+
+                // Close the document
+                doc.Close();
+
+                MessageBox.Show($"Sales receipt saved to {filePath}", "PDF Generated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Open the PDF automatically
+                try
+                {
+                    // Use ProcessStartInfo to open the PDF with the default application
+                    ProcessStartInfo psi = new ProcessStartInfo
+                    {
+                        FileName = filePath,
+                        UseShellExecute = true // This ensures the default application is used
+                    };
+                    Process.Start(psi);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error opening PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error generating PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void sellBtn_Click(object sender, EventArgs e)
         {
+            List<Model.SellItem> soldItems = new List<Model.SellItem>();
             foreach (DataGridViewRow row in fakeDataGridView.Rows)
             {
                 if (row.Cells["TypeId"].Value != null && row.Cells["Quantity"].Value != null)
@@ -398,18 +504,21 @@ namespace inventory_management_system.Seller
                         if (item.Quantity >= quantity)
                         {
                             item.Quantity -= quantity; // Deduct the sold quantity
-                                                                     
+
                             Model.SellItem sellItem = new Model.SellItem
                             {
                                 Type = type,
                                 Category = category,
                                 Price = price,
                                 Quantity = quantity,
-                                
+
                                 TotalPrice = price * quantity,
                                 SellerName = sellerName
                             };
 
+                            // add the sold item to the list
+                            soldItems.Add(sellItem);
+                            //update the database
                             SellItemController sellItemController = new SellItemController();
                             sellItemController.SellItem(sellItem);
                             itemController.UpdateItem(item); // Update the product in the database
@@ -427,6 +536,7 @@ namespace inventory_management_system.Seller
                     }
                 }
             }
+            GeneratePDF(soldItems); // Call PDF generation function
             if (fakeItemController.DeleteAllItems())
             {
                 MessageBox.Show("Item Sell successfullly", "selling Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -455,6 +565,12 @@ namespace inventory_management_system.Seller
             }
 
             totalPriceTxt.Text = totalPrice.ToString("N2") + " (Kyats)";
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DailyRecord dailyRecord = new DailyRecord();
+            dailyRecord.Show();
         }
     }
 }

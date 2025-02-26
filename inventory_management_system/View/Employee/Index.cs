@@ -175,6 +175,12 @@ namespace inventory_management_system.View.Employee
                 {
                     EmployeeGridView.Columns["Id"].Visible = false; // Hide the ID column
                 }
+                if (EmployeeGridView.Columns.Contains("CreatedAt"))
+                {
+                    EmployeeGridView.Columns["CreatedAt"].Visible = false; // Hide the ID column
+
+
+                }
             }
             catch (Exception ex)
             {

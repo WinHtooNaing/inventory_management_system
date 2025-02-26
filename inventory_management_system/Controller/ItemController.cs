@@ -17,7 +17,7 @@ namespace inventory_management_system.Controller
         // CREATE (Add a new Item)
         public bool AddProduct(Item item)
         {
-            string query = "INSERT INTO Items (Types, Quantity, PurchasePrice, SellingPrice,Category) VALUES (@Types, @Quantity, @PurchasePrice, @SellingPrice,@Category)";
+            string query = "INSERT INTO Item (Category,Types, Quantity, PurchasePrice, SellingPrice) VALUES (@Category,@Types, @Quantity, @PurchasePrice, @SellingPrice)";
 
             try
             {
@@ -47,10 +47,10 @@ namespace inventory_management_system.Controller
         public List<Item> GetAllItems(string searchItem="")
         {
             List<Item> items = new List<Item>();
-            string query = "SELECT * FROM Items";
+            string query = "SELECT * FROM Item";
             if (!string.IsNullOrEmpty(searchItem))
             {
-                query += " WHERE Types LIKE @SearchItem";
+                query += " WHERE Category LIKE @SearchItem";
             }
             try
             {
@@ -89,7 +89,7 @@ namespace inventory_management_system.Controller
         // DELETE (Remove an item by Id)
         public bool DeleteItem(int id)
         {
-            string query = "DELETE FROM Items WHERE Id=@Id";
+            string query = "DELETE FROM Item WHERE Id=@Id";
 
             try
             {
@@ -116,7 +116,7 @@ namespace inventory_management_system.Controller
         public Item GetItemById(int id)
         {
             Item item = null;
-            string query = "SELECT * FROM Items WHERE Id = @Id";
+            string query = "SELECT * FROM Item WHERE Id = @Id";
 
             try
             {
@@ -156,7 +156,7 @@ namespace inventory_management_system.Controller
         // UPDATE (Modify an existing item)
         public bool UpdateItem(Item item)
         {
-            string query = "UPDATE Items SET Types=@Types, Quantity=@Quantity, PurchasePrice=@PurchasePrice, SellingPrice=@SellingPrice , Category=@Category WHERE Id=@Id";
+            string query = "UPDATE Item SET  Category=@Category,Types=@Types, Quantity=@Quantity, PurchasePrice=@PurchasePrice, SellingPrice=@SellingPrice  WHERE Id=@Id";
 
             try
             {

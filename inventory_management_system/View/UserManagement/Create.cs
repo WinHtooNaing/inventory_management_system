@@ -44,8 +44,6 @@ namespace inventory_management_system.View.UserManagement
             {
                 MessageBox.Show("Item added successfully", "Create User", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                Index index = new Index();
-                index.Show();
                 this.Hide();
             }
             else

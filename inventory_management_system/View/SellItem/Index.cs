@@ -81,12 +81,20 @@ namespace inventory_management_system.View.SellItem
         {
             LoadSellItem();
         }
-        private void LoadSellItem()
+        private void LoadSellItem(string searchItem = "")
         {
 
             try
             {
                 var items = sellItemController.GetAllSellItems();
+
+                if (!string.IsNullOrEmpty(searchItem))
+                {
+                    items = items.Where(
+                        item => item.Category.Contains(searchItem, StringComparison.OrdinalIgnoreCase)
+                        ).ToList();
+                }
+
                 sellItemGridView.DataSource = items;
                 // Add a "No" column for numbering
                 if (!sellItemGridView.Columns.Contains("No"))
@@ -174,6 +182,18 @@ namespace inventory_management_system.View.SellItem
             //      //  DeleteGeneral(generalId);
             //    }
             //}
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            string searchItem = searchTxt.Text;
+            LoadSellItem(searchItem);
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            searchTxt.Text = "";
+            LoadSellItem();
         }
     }
 }

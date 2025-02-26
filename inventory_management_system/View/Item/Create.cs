@@ -34,8 +34,9 @@ namespace inventory_management_system.View.Item
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string type = typeTxt.Text;
-            string category = categoryTxt.SelectedItem.ToString();
+            string formattedDate = DateTime.Now.ToString("dd-MM-yyyy");
+            string category = categoryTxt.Text + "(" + formattedDate + ")";
+            string type = typeTxt.SelectedItem.ToString();
             int qty = int.Parse(qtyTxt.Text);
             decimal purchase = decimal.Parse(purchaseTxt.Text);
             decimal selling = decimal.Parse(sellingTxt.Text);
@@ -58,8 +59,7 @@ namespace inventory_management_system.View.Item
             if (isAdded)
             {
                 MessageBox.Show("Item added successfully", "Create Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Index index = new Index();
-                index.Show();
+                
                 this.Hide();
 
             }

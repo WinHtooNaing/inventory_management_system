@@ -60,7 +60,8 @@ namespace inventory_management_system.Controller
                         EmployeeRole = reader["EmployeeRole"].ToString(),
                         Number = Convert.ToInt32(reader["Number"]),
                         Salary = Convert.ToDecimal(reader["Salary"]),
-                        
+                        CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
+
                     };
                     employees.Add(employee);
                 }

@@ -9,9 +9,10 @@ namespace inventory_management_system.Model
     public class Item
     {
         public int Id { get; set; }
+        public string Category { get; set; }
+
         public string Types { get; set; }
 
-        public string Category { get; set; }
         public int Quantity { get; set; }
         public decimal PurchasePrice { get; set; }
         public decimal SellingPrice { get; set; }

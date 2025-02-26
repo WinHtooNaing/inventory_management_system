@@ -30,7 +30,7 @@
         {
             label1 = new Label();
             label2 = new Label();
-            typeTxt = new TextBox();
+            categoryTxt = new TextBox();
             qtyTxt = new TextBox();
             label3 = new Label();
             purchaseTxt = new TextBox();
@@ -39,7 +39,7 @@
             label5 = new Label();
             button1 = new Button();
             label6 = new Label();
-            categoryTxt = new ComboBox();
+            typeTxt = new ComboBox();
             SuspendLayout();
             // 
             // label1
@@ -60,18 +60,18 @@
             label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(119, 118);
             label2.Name = "label2";
-            label2.Size = new Size(57, 26);
+            label2.Size = new Size(95, 26);
             label2.TabIndex = 1;
-            label2.Text = "Type";
+            label2.Text = "Category";
             label2.Click += label2_Click;
             // 
-            // typeTxt
+            // categoryTxt
             // 
-            typeTxt.Location = new Point(119, 147);
-            typeTxt.Multiline = true;
-            typeTxt.Name = "typeTxt";
-            typeTxt.Size = new Size(305, 51);
-            typeTxt.TabIndex = 2;
+            categoryTxt.Location = new Point(119, 147);
+            categoryTxt.Multiline = true;
+            categoryTxt.Name = "categoryTxt";
+            categoryTxt.Size = new Size(305, 51);
+            categoryTxt.TabIndex = 2;
             // 
             // qtyTxt
             // 
@@ -147,25 +147,25 @@
             label6.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.Location = new Point(119, 213);
             label6.Name = "label6";
-            label6.Size = new Size(95, 26);
+            label6.Size = new Size(57, 26);
             label6.TabIndex = 10;
-            label6.Text = "Category";
+            label6.Text = "Type";
             // 
-            // categoryTxt
+            // typeTxt
             // 
-            categoryTxt.FormattingEnabled = true;
-            categoryTxt.Items.AddRange(new object[] { "ရိုးရိုး", "စပယ်ရှယ်" });
-            categoryTxt.Location = new Point(119, 263);
-            categoryTxt.Name = "categoryTxt";
-            categoryTxt.Size = new Size(305, 28);
-            categoryTxt.TabIndex = 11;
+            typeTxt.FormattingEnabled = true;
+            typeTxt.Items.AddRange(new object[] { "ရိုးရိုး", "စပယ်ရှယ်" });
+            typeTxt.Location = new Point(119, 263);
+            typeTxt.Name = "typeTxt";
+            typeTxt.Size = new Size(305, 28);
+            typeTxt.TabIndex = 11;
             // 
             // Create
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(541, 692);
-            Controls.Add(categoryTxt);
+            Controls.Add(typeTxt);
             Controls.Add(label6);
             Controls.Add(button1);
             Controls.Add(sellingTxt);
@@ -174,7 +174,7 @@
             Controls.Add(label4);
             Controls.Add(qtyTxt);
             Controls.Add(label3);
-            Controls.Add(typeTxt);
+            Controls.Add(categoryTxt);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Create";
@@ -189,7 +189,7 @@
 
         private Label label1;
         private Label label2;
-        private TextBox typeTxt;
+        private TextBox categoryTxt;
         private TextBox qtyTxt;
         private Label label3;
         private TextBox purchaseTxt;
@@ -198,6 +198,6 @@
         private Label label5;
         private Button button1;
         private Label label6;
-        private ComboBox categoryTxt;
+        private ComboBox typeTxt;
     }
 }
