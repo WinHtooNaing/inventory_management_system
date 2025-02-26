@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
             panel1 = new Panel();
             button7 = new Button();
             button5 = new Button();
@@ -37,13 +38,16 @@
             button6 = new Button();
             button1 = new Button();
             panel2 = new Panel();
+            pictureBox1 = new PictureBox();
             panel3 = new Panel();
             sellItemGridView = new DataGridView();
             clearBtn = new Button();
             searchBtn = new Button();
             searchTxt = new TextBox();
+            label1 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sellItemGridView).BeginInit();
             SuspendLayout();
             // 
@@ -66,7 +70,7 @@
             // 
             // button7
             // 
-            button7.BackColor = Color.CornflowerBlue;
+            button7.BackColor = Color.FromArgb(244, 132, 95);
             button7.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button7.ForeColor = Color.White;
             button7.Location = new Point(0, 462);
@@ -127,7 +131,7 @@
             // button6
             // 
             button6.Anchor = AnchorStyles.Bottom;
-            button6.BackColor = Color.Red;
+            button6.BackColor = Color.FromArgb(255, 89, 94);
             button6.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button6.ForeColor = Color.White;
             button6.Location = new Point(-5, 609);
@@ -154,11 +158,22 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(250, 105);
             panel2.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, -1);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(247, 103);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -170,6 +185,7 @@
             // sellItemGridView
             // 
             sellItemGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            sellItemGridView.BackgroundColor = Color.White;
             sellItemGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             sellItemGridView.Location = new Point(271, 104);
             sellItemGridView.Name = "sellItemGridView";
@@ -181,7 +197,7 @@
             // clearBtn
             // 
             clearBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            clearBtn.BackColor = Color.Red;
+            clearBtn.BackColor = Color.FromArgb(255, 89, 94);
             clearBtn.FlatStyle = FlatStyle.Flat;
             clearBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             clearBtn.ForeColor = Color.White;
@@ -196,7 +212,7 @@
             // searchBtn
             // 
             searchBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            searchBtn.BackColor = Color.CornflowerBlue;
+            searchBtn.BackColor = Color.FromArgb(244, 132, 95);
             searchBtn.FlatStyle = FlatStyle.Flat;
             searchBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchBtn.ForeColor = Color.White;
@@ -217,11 +233,23 @@
             searchTxt.Size = new Size(241, 59);
             searchTxt.TabIndex = 13;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(244, 132, 95);
+            label1.Location = new Point(271, 44);
+            label1.Name = "label1";
+            label1.Size = new Size(314, 38);
+            label1.TabIndex = 16;
+            label1.Text = "Daily Selling Record";
+            // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1374, 686);
+            Controls.Add(label1);
             Controls.Add(clearBtn);
             Controls.Add(searchBtn);
             Controls.Add(searchTxt);
@@ -234,6 +262,7 @@
             Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)sellItemGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -255,5 +284,7 @@
         private Button clearBtn;
         private Button searchBtn;
         private TextBox searchTxt;
+        private PictureBox pictureBox1;
+        private Label label1;
     }
 }

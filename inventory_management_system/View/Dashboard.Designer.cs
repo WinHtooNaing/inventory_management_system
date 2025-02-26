@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             panel1 = new Panel();
             button7 = new Button();
             button5 = new Button();
@@ -37,30 +39,30 @@
             button6 = new Button();
             button1 = new Button();
             panel2 = new Panel();
+            pictureBox1 = new PictureBox();
             panel3 = new Panel();
             label1 = new Label();
+            imageList1 = new ImageList(components);
+            imageList2 = new ImageList(components);
             panel4 = new Panel();
-            totalPurchasePriceTxt = new Label();
+            dailySellingPriceTxt = new Label();
             label2 = new Label();
             panel5 = new Panel();
-            totalIncomeTxt = new Label();
+            monthlyProfitTxt = new Label();
             label5 = new Label();
             panel6 = new Panel();
-            totalIncomeforNTxt = new Label();
-            totalIncomeforNowTxt = new Label();
+            monthlySellingPriceTxt = new Label();
+            label7 = new Label();
             panel7 = new Panel();
-            profitTxt = new Label();
-            label9 = new Label();
-            panel8 = new Panel();
-            dailyIncomeTxt = new Label();
-            label11 = new Label();
+            dailyProfitTxt = new Label();
+            r = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel6.SuspendLayout();
             panel7.SuspendLayout();
-            panel8.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -144,7 +146,7 @@
             // button6
             // 
             button6.Anchor = AnchorStyles.Bottom;
-            button6.BackColor = Color.Red;
+            button6.BackColor = Color.FromArgb(255, 89, 94);
             button6.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button6.ForeColor = Color.White;
             button6.Location = new Point(-5, 609);
@@ -157,7 +159,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.CornflowerBlue;
+            button1.BackColor = Color.FromArgb(244, 132, 95);
             button1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(-1, 104);
@@ -170,11 +172,22 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(250, 105);
             panel2.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-1, -1);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(250, 106);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -185,177 +198,173 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(605, 34);
+            label1.Font = new Font("Times New Roman", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(244, 132, 95);
+            label1.Location = new Point(639, 105);
             label1.Name = "label1";
-            label1.Size = new Size(83, 38);
+            label1.Size = new Size(340, 45);
             label1.TabIndex = 12;
-            label1.Text = "Title";
+            label1.Text = "Retail Rice System";
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
+            // 
+            // imageList2
+            // 
+            imageList2.ColorDepth = ColorDepth.Depth32Bit;
+            imageList2.ImageSize = new Size(16, 16);
+            imageList2.TransparentColor = Color.Transparent;
             // 
             // panel4
             // 
+            panel4.Anchor = AnchorStyles.None;
             panel4.BorderStyle = BorderStyle.FixedSingle;
-            panel4.Controls.Add(totalPurchasePriceTxt);
+            panel4.Controls.Add(dailySellingPriceTxt);
             panel4.Controls.Add(label2);
-            panel4.Location = new Point(284, 105);
+            panel4.Location = new Point(421, 212);
             panel4.Name = "panel4";
-            panel4.Size = new Size(872, 75);
+            panel4.Size = new Size(341, 182);
             panel4.TabIndex = 13;
             // 
-            // totalPurchasePriceTxt
+            // dailySellingPriceTxt
             // 
-            totalPurchasePriceTxt.AutoSize = true;
-            totalPurchasePriceTxt.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            totalPurchasePriceTxt.Location = new Point(237, 28);
-            totalPurchasePriceTxt.Name = "totalPurchasePriceTxt";
-            totalPurchasePriceTxt.Size = new Size(64, 25);
-            totalPurchasePriceTxt.TabIndex = 1;
-            totalPurchasePriceTxt.Text = "kyats";
+            dailySellingPriceTxt.AutoSize = true;
+            dailySellingPriceTxt.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dailySellingPriceTxt.ForeColor = Color.FromArgb(242, 112, 89);
+            dailySellingPriceTxt.Location = new Point(73, 106);
+            dailySellingPriceTxt.Name = "dailySellingPriceTxt";
+            dailySellingPriceTxt.Size = new Size(178, 32);
+            dailySellingPriceTxt.TabIndex = 1;
+            dailySellingPriceTxt.Text = "1000000 (ကျပ်)";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(21, 28);
+            label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(242, 112, 89);
+            label2.Location = new Point(82, 35);
             label2.Name = "label2";
-            label2.Size = new Size(210, 23);
+            label2.Size = new Size(169, 26);
             label2.TabIndex = 0;
-            label2.Text = "Total Purchase Price ---";
+            label2.Text = "တစ်နေ့တာ ရောင်းရငွေ";
             // 
             // panel5
             // 
+            panel5.Anchor = AnchorStyles.None;
             panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(totalIncomeTxt);
+            panel5.Controls.Add(monthlyProfitTxt);
             panel5.Controls.Add(label5);
-            panel5.Location = new Point(284, 198);
+            panel5.Location = new Point(855, 445);
             panel5.Name = "panel5";
-            panel5.Size = new Size(872, 75);
+            panel5.Size = new Size(341, 182);
             panel5.TabIndex = 14;
             // 
-            // totalIncomeTxt
+            // monthlyProfitTxt
             // 
-            totalIncomeTxt.AutoSize = true;
-            totalIncomeTxt.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            totalIncomeTxt.Location = new Point(237, 28);
-            totalIncomeTxt.Name = "totalIncomeTxt";
-            totalIncomeTxt.Size = new Size(64, 25);
-            totalIncomeTxt.TabIndex = 1;
-            totalIncomeTxt.Text = "kyats";
+            monthlyProfitTxt.AutoSize = true;
+            monthlyProfitTxt.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            monthlyProfitTxt.ForeColor = Color.FromArgb(242, 112, 89);
+            monthlyProfitTxt.Location = new Point(82, 106);
+            monthlyProfitTxt.Name = "monthlyProfitTxt";
+            monthlyProfitTxt.Size = new Size(136, 32);
+            monthlyProfitTxt.TabIndex = 1;
+            monthlyProfitTxt.Text = "1000 (ကျပ်)";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.Location = new Point(21, 28);
+            label5.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(242, 112, 89);
+            label5.Location = new Point(100, 35);
             label5.Name = "label5";
-            label5.Size = new Size(146, 23);
+            label5.Size = new Size(140, 26);
             label5.TabIndex = 0;
-            label5.Text = "Total Income ---";
+            label5.Text = "တစ်လတာ အမြတ်";
             // 
             // panel6
             // 
+            panel6.Anchor = AnchorStyles.None;
             panel6.BorderStyle = BorderStyle.FixedSingle;
-            panel6.Controls.Add(totalIncomeforNTxt);
-            panel6.Controls.Add(totalIncomeforNowTxt);
-            panel6.Location = new Point(284, 293);
+            panel6.Controls.Add(monthlySellingPriceTxt);
+            panel6.Controls.Add(label7);
+            panel6.Location = new Point(855, 212);
             panel6.Name = "panel6";
-            panel6.Size = new Size(872, 75);
+            panel6.Size = new Size(341, 182);
             panel6.TabIndex = 14;
             // 
-            // totalIncomeforNTxt
+            // monthlySellingPriceTxt
             // 
-            totalIncomeforNTxt.AutoSize = true;
-            totalIncomeforNTxt.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            totalIncomeforNTxt.Location = new Point(237, 28);
-            totalIncomeforNTxt.Name = "totalIncomeforNTxt";
-            totalIncomeforNTxt.Size = new Size(64, 25);
-            totalIncomeforNTxt.TabIndex = 1;
-            totalIncomeforNTxt.Text = "kyats";
+            monthlySellingPriceTxt.AutoSize = true;
+            monthlySellingPriceTxt.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            monthlySellingPriceTxt.ForeColor = Color.FromArgb(242, 112, 89);
+            monthlySellingPriceTxt.Location = new Point(82, 106);
+            monthlySellingPriceTxt.Name = "monthlySellingPriceTxt";
+            monthlySellingPriceTxt.Size = new Size(136, 32);
+            monthlySellingPriceTxt.TabIndex = 1;
+            monthlySellingPriceTxt.Text = "1000 (ကျပ်)";
             // 
-            // totalIncomeforNowTxt
+            // label7
             // 
-            totalIncomeforNowTxt.AutoSize = true;
-            totalIncomeforNowTxt.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            totalIncomeforNowTxt.Location = new Point(21, 28);
-            totalIncomeforNowTxt.Name = "totalIncomeforNowTxt";
-            totalIncomeforNowTxt.Size = new Size(193, 23);
-            totalIncomeforNowTxt.TabIndex = 0;
-            totalIncomeforNowTxt.Text = "Total Income for Now";
+            label7.AutoSize = true;
+            label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.FromArgb(242, 112, 89);
+            label7.Location = new Point(82, 35);
+            label7.Name = "label7";
+            label7.Size = new Size(167, 26);
+            label7.TabIndex = 0;
+            label7.Text = "တစ်လတာ ရောင်းရငွေ";
             // 
             // panel7
             // 
+            panel7.Anchor = AnchorStyles.None;
             panel7.BorderStyle = BorderStyle.FixedSingle;
-            panel7.Controls.Add(profitTxt);
-            panel7.Controls.Add(label9);
-            panel7.Location = new Point(284, 391);
+            panel7.Controls.Add(dailyProfitTxt);
+            panel7.Controls.Add(r);
+            panel7.Location = new Point(421, 445);
             panel7.Name = "panel7";
-            panel7.Size = new Size(872, 75);
+            panel7.Size = new Size(341, 182);
             panel7.TabIndex = 14;
             // 
-            // profitTxt
+            // dailyProfitTxt
             // 
-            profitTxt.AutoSize = true;
-            profitTxt.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            profitTxt.Location = new Point(237, 28);
-            profitTxt.Name = "profitTxt";
-            profitTxt.Size = new Size(64, 25);
-            profitTxt.TabIndex = 1;
-            profitTxt.Text = "kyats";
+            dailyProfitTxt.AutoSize = true;
+            dailyProfitTxt.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dailyProfitTxt.ForeColor = Color.FromArgb(242, 112, 89);
+            dailyProfitTxt.Location = new Point(82, 106);
+            dailyProfitTxt.Name = "dailyProfitTxt";
+            dailyProfitTxt.Size = new Size(136, 32);
+            dailyProfitTxt.TabIndex = 1;
+            dailyProfitTxt.Text = "1000 (ကျပ်)";
             // 
-            // label9
+            // r
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label9.Location = new Point(21, 28);
-            label9.Name = "label9";
-            label9.Size = new Size(85, 23);
-            label9.TabIndex = 0;
-            label9.Text = "Profit ---";
-            label9.Click += label9_Click;
-            // 
-            // panel8
-            // 
-            panel8.BorderStyle = BorderStyle.FixedSingle;
-            panel8.Controls.Add(dailyIncomeTxt);
-            panel8.Controls.Add(label11);
-            panel8.Location = new Point(284, 483);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(872, 75);
-            panel8.TabIndex = 14;
-            // 
-            // dailyIncomeTxt
-            // 
-            dailyIncomeTxt.AutoSize = true;
-            dailyIncomeTxt.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dailyIncomeTxt.Location = new Point(237, 28);
-            dailyIncomeTxt.Name = "dailyIncomeTxt";
-            dailyIncomeTxt.Size = new Size(64, 25);
-            dailyIncomeTxt.TabIndex = 1;
-            dailyIncomeTxt.Text = "kyats";
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label11.Location = new Point(21, 28);
-            label11.Name = "label11";
-            label11.Size = new Size(148, 23);
-            label11.TabIndex = 0;
-            label11.Text = "Daily Income ---";
+            r.AutoSize = true;
+            r.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            r.ForeColor = Color.FromArgb(242, 112, 89);
+            r.Location = new Point(96, 35);
+            r.Name = "r";
+            r.Size = new Size(142, 26);
+            r.TabIndex = 0;
+            r.Text = "တစ်နေ့တာ အမြတ်";
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1374, 686);
-            Controls.Add(panel8);
-            Controls.Add(panel7);
-            Controls.Add(panel6);
             Controls.Add(panel5);
+            Controls.Add(panel6);
+            Controls.Add(panel7);
             Controls.Add(panel4);
             Controls.Add(label1);
             Controls.Add(panel1);
+            ForeColor = Color.Black;
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Dashboard";
@@ -363,6 +372,7 @@
             Load += Dashboard_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
@@ -371,8 +381,6 @@
             panel6.PerformLayout();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
-            panel8.ResumeLayout(false);
-            panel8.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -390,20 +398,20 @@
         private Button button2;
         private Button button7;
         private Label label1;
+        private PictureBox pictureBox1;
+        private ImageList imageList1;
+        private ImageList imageList2;
         private Panel panel4;
-        private Label totalPurchasePriceTxt;
+        private Label dailySellingPriceTxt;
         private Label label2;
         private Panel panel5;
-        private Label totalIncomeTxt;
+        private Label monthlyProfitTxt;
         private Label label5;
         private Panel panel6;
-        private Label totalIncomeforNTxt;
-        private Label totalIncomeforNowTxt;
+        private Label monthlySellingPriceTxt;
+        private Label label7;
         private Panel panel7;
-        private Label profitTxt;
-        private Label label9;
-        private Panel panel8;
-        private Label dailyIncomeTxt;
-        private Label label11;
+        private Label dailyProfitTxt;
+        private Label r;
     }
 }

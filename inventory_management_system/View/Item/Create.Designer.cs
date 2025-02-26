@@ -46,7 +46,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.CornflowerBlue;
+            label1.ForeColor = Color.FromArgb(244, 132, 95);
             label1.Location = new Point(193, 26);
             label1.Name = "label1";
             label1.Size = new Size(156, 38);
@@ -129,7 +129,7 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.CornflowerBlue;
+            button1.BackColor = Color.FromArgb(244, 132, 95);
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;

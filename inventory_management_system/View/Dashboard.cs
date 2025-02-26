@@ -64,20 +64,11 @@ namespace inventory_management_system.View
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
-            string total_purchase_price = profitController.TotalCost().ToString();
-            totalPurchasePriceTxt.Text = total_purchase_price + " (Kyats)";
+            dailySellingPriceTxt.Text = profitController.DailySellingPrice().ToString() + "(ကျပ်)";
+            dailyProfitTxt.Text = profitController.DailyProfit().ToString() + "(ကျပ်)";
+            monthlySellingPriceTxt.Text = profitController.MonthlySellingPrice().ToString() + "(ကျပ်)";
+            monthlyProfitTxt.Text = profitController.MonthlyProfit().ToString() + "(ကျပ်)";
 
-            string total_income = profitController.TotalPrice("SELECT SUM(Quantity * SellingPrice) AS TotalPrice FROM Items;").ToString();
-            totalIncomeTxt.Text = total_income + " (Kyats)";
-
-            string total_income_for_now = profitController.TotalPrice("SELECT SUM(TotalPrice) AS TotalPrice FROM SellItem").ToString();
-            totalIncomeforNTxt.Text = total_income_for_now + " (Kyats)";
-
-            string profit = profitController.Profit().ToString();
-            profitTxt.Text = profit + " (Kyats)";
-
-            string daily_income = profitController.DailySale().ToString();  
-            dailyIncomeTxt.Text = daily_income+" (Kyats)";
 
 
 

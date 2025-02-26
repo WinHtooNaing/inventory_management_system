@@ -41,18 +41,19 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.CornflowerBlue;
-            label1.Location = new Point(355, 63);
+            label1.ForeColor = Color.FromArgb(244, 132, 95);
+            label1.Location = new Point(260, 35);
             label1.Name = "label1";
-            label1.Size = new Size(102, 38);
+            label1.Size = new Size(288, 38);
             label1.TabIndex = 0;
-            label1.Text = "Login";
+            label1.Text = "Retail Rice System";
             label1.Click += label1_Click;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(244, 132, 95);
             label2.Location = new Point(241, 187);
             label2.Name = "label2";
             label2.Size = new Size(36, 26);
@@ -79,14 +80,14 @@
             // 
             // button1
             // 
-            button1.BackColor = Color.CornflowerBlue;
+            button1.BackColor = Color.FromArgb(244, 132, 95);
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
             button1.Location = new Point(334, 375);
             button1.Name = "button1";
-            button1.Size = new Size(123, 50);
+            button1.Size = new Size(148, 50);
             button1.TabIndex = 5;
             button1.Text = "Login";
             button1.UseVisualStyleBackColor = false;
@@ -96,6 +97,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(244, 132, 95);
             label3.Location = new Point(209, 273);
             label3.Name = "label3";
             label3.Size = new Size(102, 26);
@@ -106,6 +108,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
+            checkBox1.ForeColor = Color.FromArgb(244, 132, 95);
             checkBox1.Location = new Point(512, 305);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(65, 24);
@@ -118,6 +121,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(800, 450);
             Controls.Add(checkBox1);
             Controls.Add(label3);

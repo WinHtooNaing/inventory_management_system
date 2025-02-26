@@ -35,12 +35,11 @@
             nameTxt = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            button2 = new Button();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.BackColor = Color.CornflowerBlue;
+            button1.BackColor = Color.FromArgb(244, 132, 95);
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
@@ -101,32 +100,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.CornflowerBlue;
+            label1.ForeColor = Color.FromArgb(244, 132, 95);
             label1.Location = new Point(166, 70);
             label1.Name = "label1";
             label1.Size = new Size(204, 38);
             label1.TabIndex = 20;
             label1.Text = "Add General";
             // 
-            // button2
-            // 
-            button2.BackColor = Color.CornflowerBlue;
-            button2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(35, 486);
-            button2.Name = "button2";
-            button2.Size = new Size(96, 42);
-            button2.TabIndex = 29;
-            button2.Text = "Back";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
-            // 
             // Create
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(541, 662);
-            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(priceTxt);
@@ -151,6 +136,5 @@
         private TextBox nameTxt;
         private Label label2;
         private Label label1;
-        private Button button2;
     }
 }

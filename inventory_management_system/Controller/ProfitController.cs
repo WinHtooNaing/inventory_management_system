@@ -15,53 +15,9 @@ namespace inventory_management_system.Controller
         public ProfitController() { 
             dbConnection = new DatabaseConnection();
         }
-        public decimal TotalPrice(string query)
+        public decimal DailySellingPrice()
         {
             decimal totalPrice = 0;
-            try
-            {
-                dbConnection.OpenConnection();
-                SqlConnection connection = dbConnection.GetConnection();
-                SqlCommand cmd = new SqlCommand(query, connection);
-                object result = cmd.ExecuteScalar();
-                if (result != DBNull.Value)
-                {
-                    totalPrice = Convert.ToDecimal(result);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-            finally
-            {
-                dbConnection.CloseConnection();
-            }
-            return totalPrice;
-        }
-        public decimal TotalCost()
-        {
-            decimal totalCost = 0;
-            decimal purchasePrice = TotalPrice("SELECT SUM(Quantity * PurchasePrice) AS TotalPrice FROM Items;");
-            decimal generalPrice = TotalPrice("SELECT SUM(Price) AS TotalPrice FROM General;");
-            decimal employeeSalary = TotalPrice("SELECT SUM(Number * Salary) AS totalPrice FROM Employee;");
-            totalCost = purchasePrice + generalPrice + employeeSalary;
-            return totalCost;
-        }
-        
-        public decimal Profit()
-        {
-            decimal cost=TotalCost();
-            
-            decimal totalSale = TotalPrice("SELECT SUM(Quantity * SellingPrice) AS TotalPrice FROM Items;");
-
-            return totalSale - cost;
-        }
-
-        public decimal DailySale()
-        {
-            decimal totalPrice = 0;
-            //string query = "SELECT SUM(TotalPrice) AS TotalPrice FROM SellItem where DATE(timestamp) = CURDATE();"; 
             string query = "SELECT SUM(TotalPrice) AS DailyTotal FROM SellItem WHERE CAST(CreatedAt AS DATE) = CAST(GETDATE() AS DATE)";
             try
             {
@@ -84,6 +40,100 @@ namespace inventory_management_system.Controller
             }
             return totalPrice;
         }
+        public decimal DailyPurchasePrice()
+        {
+            decimal totalPrice = 0;
+            string query = "SELECT SUM(PurchasePrice * Quantity) AS DailyTotal FROM SellItem WHERE CAST(CreatedAt AS DATE) = CAST(GETDATE() AS DATE)";
+            try
+            {
+                dbConnection.OpenConnection();
+                SqlConnection connection = dbConnection.GetConnection();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                object result = cmd.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    totalPrice = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+            return totalPrice;
+        }
+        public decimal MonthlySellingPrice()
+        {
+            decimal totalPrice = 0;
+
+            string query = "SELECT SUM(TotalPrice) FROM SellItem WHERE MONTH(CreatedAt) = MONTH(GETDATE()) AND YEAR(CreatedAt) = YEAR(GETDATE())";
+
+            try
+            {
+                dbConnection.OpenConnection();
+                SqlConnection connection = dbConnection.GetConnection();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                object result = cmd.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    totalPrice = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+            return totalPrice;
+        }
+
+        public decimal MonthlyPurchasePrice()
+        {
+            decimal totalPrice = 0;
+
+            string query = "SELECT SUM(PurchasePrice * Quantity) FROM SellItem WHERE MONTH(CreatedAt) = MONTH(GETDATE()) AND YEAR(CreatedAt) = YEAR(GETDATE())";
+
+            try
+            {
+                dbConnection.OpenConnection();
+                SqlConnection connection = dbConnection.GetConnection();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                object result = cmd.ExecuteScalar();
+                if (result != DBNull.Value)
+                {
+                    totalPrice = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+            return totalPrice;
+        }
+
         
+
+        public decimal DailyProfit()
+        {
+            return DailySellingPrice() - DailyPurchasePrice();
+        }
+        public decimal MonthlyProfit()
+        {
+            return MonthlySellingPrice() - MonthlyPurchasePrice();    
+        }
+
+
+
+
     }
 }

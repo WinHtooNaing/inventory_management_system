@@ -76,7 +76,7 @@
             // 
             // button5
             // 
-            button5.BackColor = Color.CornflowerBlue;
+            button5.BackColor = Color.FromArgb(244, 132, 95);
             button5.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button5.ForeColor = Color.White;
             button5.Location = new Point(-1, 390);
@@ -125,7 +125,7 @@
             // button6
             // 
             button6.Anchor = AnchorStyles.Bottom;
-            button6.BackColor = Color.Red;
+            button6.BackColor = Color.FromArgb(255, 89, 94);
             button6.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button6.ForeColor = Color.White;
             button6.Location = new Point(-5, 609);
@@ -166,7 +166,7 @@
             // 
             // addBtn
             // 
-            addBtn.BackColor = Color.CornflowerBlue;
+            addBtn.BackColor = Color.FromArgb(244, 132, 95);
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
@@ -181,6 +181,7 @@
             // GeneralGridView
             // 
             GeneralGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            GeneralGridView.BackgroundColor = Color.White;
             GeneralGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             GeneralGridView.Location = new Point(280, 175);
             GeneralGridView.Name = "GeneralGridView";

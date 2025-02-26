@@ -38,7 +38,7 @@
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.OrangeRed;
+            label1.ForeColor = Color.FromArgb(244, 132, 95);
             label1.Location = new Point(505, 37);
             label1.Name = "label1";
             label1.Size = new Size(289, 53);
@@ -49,6 +49,7 @@
             // dailyRecordGridView
             // 
             dailyRecordGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dailyRecordGridView.BackgroundColor = Color.White;
             dailyRecordGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dailyRecordGridView.Location = new Point(107, 156);
             dailyRecordGridView.Name = "dailyRecordGridView";

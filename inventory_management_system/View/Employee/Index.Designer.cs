@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
             panel1 = new Panel();
             button7 = new Button();
             button5 = new Button();
@@ -40,9 +41,11 @@
             panel3 = new Panel();
             addBtn = new Button();
             EmployeeGridView = new DataGridView();
+            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)EmployeeGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -100,7 +103,7 @@
             // 
             // button3
             // 
-            button3.BackColor = Color.CornflowerBlue;
+            button3.BackColor = Color.FromArgb(244, 132, 95);
             button3.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.ForeColor = Color.White;
             button3.Location = new Point(-1, 318);
@@ -125,7 +128,7 @@
             // button6
             // 
             button6.Anchor = AnchorStyles.Bottom;
-            button6.BackColor = Color.Red;
+            button6.BackColor = Color.FromArgb(255, 89, 94);
             button6.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button6.ForeColor = Color.White;
             button6.Location = new Point(-5, 609);
@@ -151,6 +154,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.Controls.Add(pictureBox1);
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
@@ -166,7 +170,7 @@
             // 
             // addBtn
             // 
-            addBtn.BackColor = Color.CornflowerBlue;
+            addBtn.BackColor = Color.FromArgb(244, 132, 95);
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
@@ -181,6 +185,7 @@
             // EmployeeGridView
             // 
             EmployeeGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            EmployeeGridView.BackgroundColor = Color.White;
             EmployeeGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             EmployeeGridView.Location = new Point(274, 175);
             EmployeeGridView.Name = "EmployeeGridView";
@@ -188,6 +193,16 @@
             EmployeeGridView.Size = new Size(1070, 499);
             EmployeeGridView.TabIndex = 7;
             EmployeeGridView.CellContentClick += EmployeeGridView_CellContentClick;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-1, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(248, 102);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
             // 
             // Index
             // 
@@ -205,6 +220,7 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)EmployeeGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -222,5 +238,6 @@
         private Button addBtn;
         private DataGridView EmployeeGridView;
         private Button button7;
+        private PictureBox pictureBox1;
     }
 }

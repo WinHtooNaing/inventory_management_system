@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            linkLabel1 = new LinkLabel();
             sellerNameLabel = new Label();
             Logout = new LinkLabel();
-            panel2 = new Panel();
             itemGridView = new DataGridView();
             fakeDataGridView = new DataGridView();
             totalPriceTxt = new Label();
             cancleBtn = new Button();
             sellBtn = new Button();
-            linkLabel1 = new LinkLabel();
+            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)itemGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fakeDataGridView).BeginInit();
@@ -46,50 +46,63 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.BackColor = SystemColors.Control;
+            panel1.BackColor = Color.White;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(linkLabel1);
             panel1.Controls.Add(sellerNameLabel);
             panel1.Controls.Add(Logout);
-            panel1.Controls.Add(panel2);
             panel1.Location = new Point(2, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1527, 66);
+            panel1.Size = new Size(1527, 75);
             panel1.TabIndex = 0;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            linkLabel1.AutoSize = true;
+            linkLabel1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            linkLabel1.LinkColor = Color.FromArgb(244, 132, 95);
+            linkLabel1.Location = new Point(1265, 27);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(120, 23);
+            linkLabel1.TabIndex = 3;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Daily Record";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // sellerNameLabel
             // 
             sellerNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             sellerNameLabel.AutoSize = true;
-            sellerNameLabel.Location = new Point(1344, 29);
+            sellerNameLabel.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            sellerNameLabel.ForeColor = Color.FromArgb(244, 132, 95);
+            sellerNameLabel.Location = new Point(1108, 27);
             sellerNameLabel.Name = "sellerNameLabel";
-            sellerNameLabel.Size = new Size(46, 20);
+            sellerNameLabel.Size = new Size(56, 23);
             sellerNameLabel.TabIndex = 2;
             sellerNameLabel.Text = "name";
             sellerNameLabel.Click += label1_Click;
             // 
             // Logout
             // 
+            Logout.ActiveLinkColor = Color.FromArgb(255, 89, 94);
             Logout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Logout.AutoSize = true;
-            Logout.Location = new Point(1451, 29);
+            Logout.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Logout.LinkColor = Color.FromArgb(255, 89, 94);
+            Logout.Location = new Point(1403, 27);
             Logout.Name = "Logout";
-            Logout.Size = new Size(56, 20);
+            Logout.Size = new Size(70, 23);
             Logout.TabIndex = 1;
             Logout.TabStop = true;
             Logout.Text = "Logout";
             Logout.LinkClicked += Logout_LinkClicked;
             // 
-            // panel2
-            // 
-            panel2.BackColor = SystemColors.ControlDark;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(299, 64);
-            panel2.TabIndex = 0;
-            // 
             // itemGridView
             // 
             itemGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            itemGridView.BackgroundColor = Color.White;
             itemGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             itemGridView.Location = new Point(12, 120);
             itemGridView.Name = "itemGridView";
@@ -101,6 +114,7 @@
             // fakeDataGridView
             // 
             fakeDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            fakeDataGridView.BackgroundColor = Color.White;
             fakeDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             fakeDataGridView.Location = new Point(945, 120);
             fakeDataGridView.Name = "fakeDataGridView";
@@ -123,7 +137,7 @@
             // cancleBtn
             // 
             cancleBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            cancleBtn.BackColor = Color.IndianRed;
+            cancleBtn.BackColor = Color.FromArgb(255, 89, 94);
             cancleBtn.Cursor = Cursors.Hand;
             cancleBtn.FlatStyle = FlatStyle.Flat;
             cancleBtn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -139,7 +153,7 @@
             // sellBtn
             // 
             sellBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            sellBtn.BackColor = Color.DarkOrange;
+            sellBtn.BackColor = Color.FromArgb(244, 132, 95);
             sellBtn.Cursor = Cursors.Hand;
             sellBtn.FlatStyle = FlatStyle.Flat;
             sellBtn.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -152,22 +166,22 @@
             sellBtn.UseVisualStyleBackColor = false;
             sellBtn.Click += sellBtn_Click;
             // 
-            // linkLabel1
+            // label1
             // 
-            linkLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(1210, 29);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(94, 20);
-            linkLabel1.TabIndex = 3;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Daily Record";
-            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(244, 132, 95);
+            label1.Location = new Point(38, 14);
+            label1.Name = "label1";
+            label1.Size = new Size(277, 39);
+            label1.TabIndex = 4;
+            label1.Text = "Retail Rice System";
             // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(1530, 745);
             Controls.Add(sellBtn);
             Controls.Add(cancleBtn);
@@ -191,7 +205,6 @@
         #endregion
 
         private Panel panel1;
-        private Panel panel2;
         private Label sellerNameLabel;
         private LinkLabel Logout;
         private DataGridView itemGridView;
@@ -200,5 +213,6 @@
         private Button cancleBtn;
         private Button sellBtn;
         private LinkLabel linkLabel1;
+        private Label label1;
     }
 }
