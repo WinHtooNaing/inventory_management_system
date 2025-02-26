@@ -23,29 +23,37 @@ namespace inventory_management_system.View.UserManagement
         private void button1_Click(object sender, EventArgs e)
         {
             Dashboard dashboard = new Dashboard();
-            dashboard.Show();
-            this.Hide();
+            //dashboard.Show();
+            //this.Hide();
+            dashboard.Visible = true;
+            this.Visible = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Item.Index index = new Item.Index();
-            index.Show();
-            this.Hide();
+            //index.Show();
+            //this.Hide();
+            index.Visible = true;
+            this.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Employee.Index index = new Employee.Index();
-            index.Show();
-            this.Hide();
+            //index.Show();
+            //this.Hide();
+            index.Visible = true;
+            this.Visible = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             General.Index index = new General.Index();
-            index.Show();
-            this.Hide();
+            //index.Show();
+            //this.Hide();
+            index.Visible = true;
+            this.Visible = false;
         }
 
         private void addBtn_Click(object sender, EventArgs e)
@@ -281,8 +289,10 @@ namespace inventory_management_system.View.UserManagement
         private void button7_Click(object sender, EventArgs e)
         {
             SellItem.Index index = new SellItem.Index();
-            index.Show();
-            this.Hide();
+            //index.Show();
+            //this.Hide();
+            index.Visible = true;
+            this.Visible = false;
         }
     }
 }

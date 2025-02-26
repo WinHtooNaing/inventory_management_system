@@ -24,45 +24,57 @@ namespace inventory_management_system.View.SellItem
         private void button1_Click(object sender, EventArgs e)
         {
             Dashboard dashboard = new Dashboard();
-            dashboard.Show();
-            this.Hide();
+            //dashboard.Show();
+            //this.Hide();
+            dashboard.Visible = true;
+            this.Visible = false;
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Item.Index item = new Item.Index();
-            item.Show();
-            this.Hide();
+            //item.Show();
+            //this.Hide();
+            item.Visible = true;
+            this.Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             UserManagement.Index index = new UserManagement.Index();
-            index.Show();
-            this.Hide();
+            //index.Show();
+            //this.Hide();
+            index.Visible = true;
+            this.Visible = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             Employee.Index index = new Employee.Index();
-            index.Show();
-            this.Hide();
+            //index.Show();
+            //this.Hide();
+            index.Visible = true;
+            this.Visible = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             General.Index index = new General.Index();
-            index.Show();
-            this.Hide();
+            //index.Show();
+            //this.Hide();
+            index.Visible = true;
+            this.Visible = false;
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             SessionStorage.Session.UserName = "";
             Login index = new Login();
-            index.Show();
-            this.Hide();
+            //index.Show();
+            //this.Hide();
+            index.Visible = true;
+            this.Visible = false;
         }
 
         private void Index_Load(object sender, EventArgs e)
