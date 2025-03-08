@@ -37,11 +37,11 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(244, 132, 95);
-            label1.Location = new Point(505, 37);
+            label1.Location = new Point(507, 38);
             label1.Name = "label1";
-            label1.Size = new Size(289, 53);
+            label1.Size = new Size(305, 57);
             label1.TabIndex = 0;
             label1.Text = "Daily Record";
             label1.Click += label1_Click;

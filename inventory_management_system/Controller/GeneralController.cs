@@ -17,7 +17,7 @@ namespace inventory_management_system.Controller
         }
         // Add
         public bool AddGeneral(General general) {
-            string query = "insert into General(Name,Price) values(@Name,@Price)";
+            string query = "insert into General(Name,Price,CreatedAt) values(@Name,@Price,@CreatedAt)";
             try
             {
                 dbConnection.OpenConnection();
@@ -25,6 +25,7 @@ namespace inventory_management_system.Controller
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@Name",general.Name);
                 cmd.Parameters.AddWithValue("@Price", general.Price);
+                cmd.Parameters.AddWithValue("@CreatedAt",general.CreatedAt);
                 int rowEffected = cmd.ExecuteNonQuery();
                 return rowEffected > 0;
             }
@@ -59,6 +60,7 @@ namespace inventory_management_system.Controller
                         Id = Convert.ToInt32(reader["Id"]),
                         Name = reader["Name"].ToString(),
                         Price = Convert.ToDecimal(reader["Price"]),
+                        CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
                     };
                     generals.Add(general);
                 }
@@ -95,7 +97,8 @@ namespace inventory_management_system.Controller
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Name = reader["Name"].ToString(),
-                        Price = Convert.ToDecimal(reader["Price"])
+                        Price = Convert.ToDecimal(reader["Price"]),
+                        CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
                     };
                     reader.Close();
                     }
@@ -115,7 +118,7 @@ namespace inventory_management_system.Controller
         // update
         public bool UpdateGeneral(General general)
         {
-            string query = "UPDATE General SET Name=@Name, Price=@Price WHERE Id=@Id";
+            string query = "UPDATE General SET Name=@Name, Price=@Price  , CreatedAt=@CreatedAt WHERE Id=@Id";
 
             try
             {
@@ -125,6 +128,7 @@ namespace inventory_management_system.Controller
                 cmd.Parameters.AddWithValue("@Id", general.Id);
                 cmd.Parameters.AddWithValue("@Name", general.Name);
                 cmd.Parameters.AddWithValue("@Price", general.Price);
+                cmd.Parameters.AddWithValue("@CreatedAt",general.CreatedAt);
 
                 int rowAffected = cmd.ExecuteNonQuery();
                 return rowAffected > 0;

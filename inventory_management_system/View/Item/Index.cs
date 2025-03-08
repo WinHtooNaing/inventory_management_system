@@ -64,7 +64,7 @@ namespace inventory_management_system.View.Item
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ensure the clicked cell is a button
-            if (e.RowIndex >= 0 && ( e.ColumnIndex == itemGridView.Columns["Delete"].Index))
+            if (e.RowIndex >= 0 && (e.ColumnIndex == itemGridView.Columns["Delete"].Index))
             {
                 // Get the selected product's ID
                 int itemId = Convert.ToInt32(itemGridView.Rows[e.RowIndex].Cells["Id"].Value);
@@ -86,6 +86,7 @@ namespace inventory_management_system.View.Item
         {
             Create create = new Create();
             create.Show();
+            this.Hide();
         }
 
         private void Index_Load(object sender, EventArgs e)
@@ -133,7 +134,7 @@ namespace inventory_management_system.View.Item
                         MessageBox.Show("Failed to update", "Update Item", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -171,7 +172,7 @@ namespace inventory_management_system.View.Item
                     itemGridView.Columns.Insert(0, noColumn);
                 }
 
-                
+
 
                 // Add Delete button
                 if (!itemGridView.Columns.Contains("Delete"))
@@ -201,7 +202,7 @@ namespace inventory_management_system.View.Item
                 itemGridView.Columns["PurchasePrice"].ReadOnly = false;
                 itemGridView.Columns["SellingPrice"].ReadOnly = false;
                 itemGridView.Columns["Quantity"].ReadOnly = false;
-                itemGridView.Columns["Category"].ReadOnly = false;
+                itemGridView.Columns["Category"].ReadOnly = true;
 
 
                 // Customize the DataGridView
@@ -222,7 +223,7 @@ namespace inventory_management_system.View.Item
                 MessageBox.Show("Error loading products: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         public void DeleteItem(int itemId)
         {
 
@@ -272,6 +273,19 @@ namespace inventory_management_system.View.Item
             //this.Hide();
             index.Visible = true;
             this.Visible = false;
+        }
+
+        private void addCategoryBtn_Click(object sender, EventArgs e)
+        {
+            CreateCategory category = new CreateCategory();
+            category.Show();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Report.Index index = new Report.Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

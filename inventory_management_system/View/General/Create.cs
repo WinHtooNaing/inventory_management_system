@@ -30,22 +30,31 @@ namespace inventory_management_system.View.General
         {
             string name = nameTxt.Text;
             decimal price = decimal.Parse(priceTxt.Text);
+
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(priceTxt.Text))
             {
                 MessageBox.Show("invalid input", "Add", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
             }
+            DateTime createdAt = monthCalendar1.SelectionStart;
+            if (createdAt >= DateTime.Today)
+            {
+                MessageBox.Show("The selected date must not be in the future.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Model.General general = new Model.General
             {
                 Name = name,
                 Price = price,
+                CreatedAt = createdAt,
             };
             bool AddGeneral = generalController.AddGeneral(general);
             if (AddGeneral)
             {
                 MessageBox.Show("Add Successful", "Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
-               
+                Index index = new Index();
+                index.Show();
                 this.Hide();
             }
             else
@@ -56,6 +65,13 @@ namespace inventory_management_system.View.General
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            Index index = new Index();
+            index.Show();
+            this.Hide();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
         {
             Index index = new Index();
             index.Show();

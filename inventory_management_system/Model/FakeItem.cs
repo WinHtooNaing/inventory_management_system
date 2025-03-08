@@ -15,6 +15,7 @@ namespace inventory_management_system.Model
         public string Type {  get; set; }
 
         public decimal Price { get; set; }
+        public decimal PurchasePrice { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

@@ -43,6 +43,8 @@ namespace inventory_management_system.View.UserManagement
             if (isAdded)
             {
                 MessageBox.Show("Item added successfully", "Create User", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Index index = new Index();
+                index.Show();
 
                 this.Hide();
             }
@@ -55,6 +57,13 @@ namespace inventory_management_system.View.UserManagement
         private void Create_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Index index = new Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

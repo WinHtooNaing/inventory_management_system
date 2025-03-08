@@ -36,6 +36,7 @@
             nameTxt = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -44,7 +45,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(117, 546);
+            button1.Location = new Point(117, 526);
             button1.Name = "button1";
             button1.Size = new Size(307, 56);
             button1.TabIndex = 27;
@@ -109,19 +110,34 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(244, 132, 95);
-            label1.Location = new Point(193, 91);
+            label1.Location = new Point(150, 91);
             label1.Name = "label1";
-            label1.Size = new Size(156, 38);
+            label1.Size = new Size(228, 57);
             label1.TabIndex = 20;
             label1.Text = "Add User";
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(188, 71, 73);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(117, 606);
+            button2.Name = "button2";
+            button2.Size = new Size(307, 56);
+            button2.TabIndex = 28;
+            button2.Text = "Back";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // Create
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(541, 692);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(passwordTxt);
             Controls.Add(label4);
@@ -148,5 +164,6 @@
         private TextBox nameTxt;
         private Label label2;
         private Label label1;
+        private Button button2;
     }
 }

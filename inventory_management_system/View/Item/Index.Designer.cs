@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
             panel1 = new Panel();
+            button9 = new Button();
             button8 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -38,23 +39,25 @@
             button6 = new Button();
             button1 = new Button();
             panel2 = new Panel();
+            pictureBox1 = new PictureBox();
             panel3 = new Panel();
             itemGridView = new DataGridView();
             button7 = new Button();
             searchTxt = new TextBox();
             searchBtn = new Button();
             clearBtn = new Button();
-            pictureBox1 = new PictureBox();
+            addCategoryBtn = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)itemGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)itemGridView).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button9);
             panel1.Controls.Add(button8);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
@@ -67,6 +70,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 685);
             panel1.TabIndex = 1;
+            // 
+            // button9
+            // 
+            button9.BackColor = Color.White;
+            button9.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button9.Location = new Point(-1, 528);
+            button9.Name = "button9";
+            button9.Size = new Size(250, 75);
+            button9.TabIndex = 13;
+            button9.Text = "Report";
+            button9.UseVisualStyleBackColor = false;
+            button9.Click += button9_Click;
             // 
             // button8
             // 
@@ -88,7 +103,7 @@
             button5.Name = "button5";
             button5.Size = new Size(250, 75);
             button5.TabIndex = 10;
-            button5.Text = "General";
+            button5.Text = "General Expense";
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
@@ -112,7 +127,7 @@
             button3.Name = "button3";
             button3.Size = new Size(250, 75);
             button3.TabIndex = 8;
-            button3.Text = "Employee";
+            button3.Text = "Staff";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
@@ -164,6 +179,16 @@
             panel2.Size = new Size(250, 105);
             panel2.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, -1);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(249, 106);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
             // panel3
             // 
             panel3.Location = new Point(0, 101);
@@ -187,13 +212,13 @@
             // 
             button7.BackColor = Color.FromArgb(244, 132, 95);
             button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button7.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button7.ForeColor = Color.White;
             button7.Location = new Point(280, 84);
             button7.Name = "button7";
             button7.Size = new Size(185, 59);
             button7.TabIndex = 3;
-            button7.Text = "Add";
+            button7.Text = "Create";
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
             // 
@@ -212,7 +237,7 @@
             searchBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             searchBtn.BackColor = Color.FromArgb(244, 132, 95);
             searchBtn.FlatStyle = FlatStyle.Flat;
-            searchBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchBtn.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchBtn.ForeColor = Color.White;
             searchBtn.Location = new Point(1058, 84);
             searchBtn.Name = "searchBtn";
@@ -227,7 +252,7 @@
             clearBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             clearBtn.BackColor = Color.FromArgb(255, 89, 94);
             clearBtn.FlatStyle = FlatStyle.Flat;
-            clearBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clearBtn.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             clearBtn.ForeColor = Color.White;
             clearBtn.Location = new Point(1215, 84);
             clearBtn.Name = "clearBtn";
@@ -237,21 +262,26 @@
             clearBtn.UseVisualStyleBackColor = false;
             clearBtn.Click += clearBtn_Click;
             // 
-            // pictureBox1
+            // addCategoryBtn
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, -1);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(249, 106);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
+            addCategoryBtn.BackColor = Color.FromArgb(244, 132, 95);
+            addCategoryBtn.FlatStyle = FlatStyle.Flat;
+            addCategoryBtn.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addCategoryBtn.ForeColor = Color.White;
+            addCategoryBtn.Location = new Point(486, 84);
+            addCategoryBtn.Name = "addCategoryBtn";
+            addCategoryBtn.Size = new Size(185, 59);
+            addCategoryBtn.TabIndex = 7;
+            addCategoryBtn.Text = "Add Category";
+            addCategoryBtn.UseVisualStyleBackColor = false;
+            addCategoryBtn.Click += addCategoryBtn_Click;
             // 
             // Index
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1374, 686);
+            Controls.Add(addCategoryBtn);
             Controls.Add(clearBtn);
             Controls.Add(searchBtn);
             Controls.Add(searchTxt);
@@ -265,8 +295,8 @@
             Load += Index_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)itemGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)itemGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -289,5 +319,7 @@
         private Button clearBtn;
         private Button button8;
         private PictureBox pictureBox1;
+        private Button addCategoryBtn;
+        private Button button9;
     }
 }

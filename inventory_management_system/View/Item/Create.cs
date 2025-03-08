@@ -15,10 +15,12 @@ namespace inventory_management_system.View.Item
     public partial class Create : Form
     {
         private readonly ItemController itemcontroller;
+        private readonly CategoryController categorycontroller;
         public Create()
         {
             InitializeComponent();
             itemcontroller = new ItemController();
+            categorycontroller = new CategoryController();
             this.MaximizeBox = false;
         }
 
@@ -35,7 +37,7 @@ namespace inventory_management_system.View.Item
         private void button1_Click(object sender, EventArgs e)
         {
             string formattedDate = DateTime.Now.ToString("dd-MM-yyyy");
-            string category = categoryTxt.Text + "(" + formattedDate + ")";
+            string category = categoryTxt.SelectedItem.ToString() + "(" + formattedDate + ")";
             string type = typeTxt.SelectedItem.ToString();
             int qty = int.Parse(qtyTxt.Text);
             decimal purchase = decimal.Parse(purchaseTxt.Text);
@@ -59,7 +61,8 @@ namespace inventory_management_system.View.Item
             if (isAdded)
             {
                 MessageBox.Show("Item added successfully", "Create Item", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+                Index index = new Index();
+                index.Show();
                 this.Hide();
 
             }
@@ -71,7 +74,35 @@ namespace inventory_management_system.View.Item
 
         private void Create_Load(object sender, EventArgs e)
         {
+            Load_combobox();
+        }
+        private void Load_combobox()
+        {
+            try
+            {
+                var categories = categorycontroller.GetAllCategories();
+                categoryTxt.Items.Add("Select A Category");
+                foreach (var category in categories)
+                {
+                    categoryTxt.Items.Add(category.Name.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Index index = new Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

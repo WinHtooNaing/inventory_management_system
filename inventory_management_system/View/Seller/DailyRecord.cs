@@ -73,6 +73,10 @@ namespace inventory_management_system.View.Seller
                 {
                     dailyRecordGridView.Columns["CreatedAt"].Visible = false; // Hide the ID column
                 }
+                if (dailyRecordGridView.Columns.Contains("PurchasePrice"))
+                {
+                    dailyRecordGridView.Columns["PurchasePrice"].Visible = false; // Hide the ID column
+                }
                 if (dailyRecordGridView.Columns.Contains("SellerName"))
                 {
                     dailyRecordGridView.Columns["SellerName"].Visible = false; // Hide the ID column

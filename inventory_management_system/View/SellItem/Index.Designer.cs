@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Index));
             panel1 = new Panel();
+            button8 = new Button();
             button7 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -55,6 +56,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button8);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
@@ -67,6 +69,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 685);
             panel1.TabIndex = 2;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.White;
+            button8.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button8.Location = new Point(-1, 528);
+            button8.Name = "button8";
+            button8.Size = new Size(250, 75);
+            button8.TabIndex = 13;
+            button8.Text = "Report";
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // button7
             // 
@@ -88,7 +102,7 @@
             button5.Name = "button5";
             button5.Size = new Size(250, 75);
             button5.TabIndex = 10;
-            button5.Text = "General";
+            button5.Text = "General Expense";
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
@@ -112,7 +126,7 @@
             button3.Name = "button3";
             button3.Size = new Size(250, 75);
             button3.TabIndex = 8;
-            button3.Text = "Employee";
+            button3.Text = "Staff";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
@@ -199,7 +213,7 @@
             clearBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             clearBtn.BackColor = Color.FromArgb(255, 89, 94);
             clearBtn.FlatStyle = FlatStyle.Flat;
-            clearBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            clearBtn.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             clearBtn.ForeColor = Color.White;
             clearBtn.Location = new Point(1226, 39);
             clearBtn.Name = "clearBtn";
@@ -214,7 +228,7 @@
             searchBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             searchBtn.BackColor = Color.FromArgb(244, 132, 95);
             searchBtn.FlatStyle = FlatStyle.Flat;
-            searchBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchBtn.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchBtn.ForeColor = Color.White;
             searchBtn.Location = new Point(1069, 39);
             searchBtn.Name = "searchBtn";
@@ -236,11 +250,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(244, 132, 95);
-            label1.Location = new Point(271, 44);
+            label1.Location = new Point(259, 39);
             label1.Name = "label1";
-            label1.Size = new Size(314, 38);
+            label1.Size = new Size(461, 57);
             label1.TabIndex = 16;
             label1.Text = "Daily Selling Record";
             // 
@@ -286,5 +300,6 @@
         private TextBox searchTxt;
         private PictureBox pictureBox1;
         private Label label1;
+        private Button button8;
     }
 }

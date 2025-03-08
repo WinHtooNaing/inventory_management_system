@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button8 = new Button();
             button7 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -49,6 +50,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button8);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
@@ -61,6 +63,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(250, 685);
             panel1.TabIndex = 1;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.White;
+            button8.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button8.Location = new Point(0, 528);
+            button8.Name = "button8";
+            button8.Size = new Size(250, 75);
+            button8.TabIndex = 13;
+            button8.Text = "Report";
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // button7
             // 
@@ -83,7 +97,7 @@
             button5.Name = "button5";
             button5.Size = new Size(250, 75);
             button5.TabIndex = 10;
-            button5.Text = "General";
+            button5.Text = "General Expense";
             button5.UseVisualStyleBackColor = false;
             // 
             // button4
@@ -106,7 +120,7 @@
             button3.Name = "button3";
             button3.Size = new Size(250, 75);
             button3.TabIndex = 8;
-            button3.Text = "Employee";
+            button3.Text = "Staff";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
@@ -168,7 +182,7 @@
             // 
             addBtn.BackColor = Color.FromArgb(244, 132, 95);
             addBtn.FlatStyle = FlatStyle.Flat;
-            addBtn.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addBtn.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.White;
             addBtn.Location = new Point(280, 98);
             addBtn.Name = "addBtn";
@@ -223,5 +237,6 @@
         private Button addBtn;
         private DataGridView GeneralGridView;
         private Button button7;
+        private Button button8;
     }
 }

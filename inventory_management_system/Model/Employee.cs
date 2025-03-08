@@ -9,11 +9,13 @@ namespace inventory_management_system.Model
     public class Employee
     {
         public int Id{ get; set; }
+        public string Name{ get; set; }
         public string EmployeeRole{ get; set; }
-        public int Number { get; set; }
         public decimal Salary { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+
 
 
     }

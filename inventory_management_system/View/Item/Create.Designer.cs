@@ -30,7 +30,6 @@
         {
             label1 = new Label();
             label2 = new Label();
-            categoryTxt = new TextBox();
             qtyTxt = new TextBox();
             label3 = new Label();
             purchaseTxt = new TextBox();
@@ -40,16 +39,18 @@
             button1 = new Button();
             label6 = new Label();
             typeTxt = new ComboBox();
+            categoryTxt = new ComboBox();
+            button2 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(244, 132, 95);
-            label1.Location = new Point(193, 26);
+            label1.Location = new Point(149, 26);
             label1.Name = "label1";
-            label1.Size = new Size(156, 38);
+            label1.Size = new Size(229, 57);
             label1.TabIndex = 0;
             label1.Text = "Add Item";
             label1.Click += label1_Click;
@@ -64,14 +65,6 @@
             label2.TabIndex = 1;
             label2.Text = "Category";
             label2.Click += label2_Click;
-            // 
-            // categoryTxt
-            // 
-            categoryTxt.Location = new Point(119, 147);
-            categoryTxt.Multiline = true;
-            categoryTxt.Name = "categoryTxt";
-            categoryTxt.Size = new Size(305, 51);
-            categoryTxt.TabIndex = 2;
             // 
             // qtyTxt
             // 
@@ -160,11 +153,36 @@
             typeTxt.Size = new Size(305, 28);
             typeTxt.TabIndex = 11;
             // 
+            // categoryTxt
+            // 
+            categoryTxt.FormattingEnabled = true;
+            categoryTxt.Location = new Point(119, 171);
+            categoryTxt.Name = "categoryTxt";
+            categoryTxt.Size = new Size(305, 28);
+            categoryTxt.TabIndex = 12;
+            categoryTxt.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(188, 71, 73);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(119, 699);
+            button2.Name = "button2";
+            button2.Size = new Size(307, 56);
+            button2.TabIndex = 13;
+            button2.Text = "Back";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
             // Create
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(541, 692);
+            ClientSize = new Size(541, 776);
+            Controls.Add(button2);
+            Controls.Add(categoryTxt);
             Controls.Add(typeTxt);
             Controls.Add(label6);
             Controls.Add(button1);
@@ -174,7 +192,6 @@
             Controls.Add(label4);
             Controls.Add(qtyTxt);
             Controls.Add(label3);
-            Controls.Add(categoryTxt);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Create";
@@ -189,7 +206,6 @@
 
         private Label label1;
         private Label label2;
-        private TextBox categoryTxt;
         private TextBox qtyTxt;
         private Label label3;
         private TextBox purchaseTxt;
@@ -199,5 +215,7 @@
         private Button button1;
         private Label label6;
         private ComboBox typeTxt;
+        private ComboBox categoryTxt;
+        private Button button2;
     }
 }

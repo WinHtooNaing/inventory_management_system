@@ -35,6 +35,8 @@
             nameTxt = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            monthCalendar1 = new MonthCalendar();
+            button2 = new Button();
             SuspendLayout();
             // 
             // button1
@@ -43,9 +45,9 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(157, 472);
+            button1.Location = new Point(247, 447);
             button1.Name = "button1";
-            button1.Size = new Size(231, 56);
+            button1.Size = new Size(283, 56);
             button1.TabIndex = 28;
             button1.Text = "Add";
             button1.UseVisualStyleBackColor = false;
@@ -62,7 +64,7 @@
             // 
             // priceTxt
             // 
-            priceTxt.Location = new Point(117, 328);
+            priceTxt.Location = new Point(117, 365);
             priceTxt.Multiline = true;
             priceTxt.Name = "priceTxt";
             priceTxt.Size = new Size(305, 51);
@@ -71,10 +73,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(117, 290);
+            label3.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(117, 327);
             label3.Name = "label3";
-            label3.Size = new Size(59, 26);
+            label3.Size = new Size(63, 29);
             label3.TabIndex = 23;
             label3.Text = "Price";
             // 
@@ -89,29 +91,51 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Times New Roman", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(117, 180);
             label2.Name = "label2";
-            label2.Size = new Size(66, 26);
+            label2.Size = new Size(73, 29);
             label2.TabIndex = 21;
             label2.Text = "Name";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(244, 132, 95);
-            label1.Location = new Point(166, 70);
+            label1.Location = new Point(258, 68);
             label1.Name = "label1";
-            label1.Size = new Size(204, 38);
+            label1.Size = new Size(300, 57);
             label1.TabIndex = 20;
             label1.Text = "Add General";
+            // 
+            // monthCalendar1
+            // 
+            monthCalendar1.Location = new Point(457, 209);
+            monthCalendar1.Name = "monthCalendar1";
+            monthCalendar1.TabIndex = 29;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(188, 71, 73);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(247, 509);
+            button2.Name = "button2";
+            button2.Size = new Size(283, 56);
+            button2.TabIndex = 30;
+            button2.Text = "Back";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click_1;
             // 
             // Create
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(541, 662);
+            ClientSize = new Size(811, 593);
+            Controls.Add(button2);
+            Controls.Add(monthCalendar1);
             Controls.Add(button1);
             Controls.Add(label5);
             Controls.Add(priceTxt);
@@ -136,5 +160,7 @@
         private TextBox nameTxt;
         private Label label2;
         private Label label1;
+        private MonthCalendar monthCalendar1;
+        private Button button2;
     }
 }

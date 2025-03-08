@@ -77,12 +77,14 @@ namespace inventory_management_system.View.General
                     // Get updated values from the grid
                     string name = GeneralGridView.Rows[rowIndex].Cells["Name"].Value.ToString();
                     decimal price = Convert.ToDecimal(GeneralGridView.Rows[rowIndex].Cells["Price"].Value);
+                    DateTime createdAt = Convert.ToDateTime(GeneralGridView.Rows[rowIndex].Cells["CreatedAt"].Value);
 
                     Model.General general = new Model.General
                     {
                         Id = generalId,
                         Name = name,
                         Price = price,
+                        CreatedAt = createdAt,
                     };
                     bool updateGeneral = generalController.UpdateGeneral(general);
                     if (updateGeneral)
@@ -107,6 +109,7 @@ namespace inventory_management_system.View.General
         {
             Create create = new Create();
             create.Show();
+            this.Hide();
         }
         private void LoadGeneralIntoGrid()
         {
@@ -133,7 +136,7 @@ namespace inventory_management_system.View.General
                     GeneralGridView.Columns.Insert(0, noColumn);
                 }
 
-                
+
 
                 // Add Delete button
                 if (!GeneralGridView.Columns.Contains("Delete"))
@@ -163,6 +166,7 @@ namespace inventory_management_system.View.General
 
                 GeneralGridView.Columns["Name"].ReadOnly = false;
                 GeneralGridView.Columns["Price"].ReadOnly = false;
+                GeneralGridView.Columns["CreatedAt"].ReadOnly = true;
 
                 // Customize the DataGridView
                 GeneralGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -172,17 +176,17 @@ namespace inventory_management_system.View.General
                 {
                     GeneralGridView.Columns["Id"].Visible = false; // Hide the ID column
                 }
-                if (GeneralGridView.Columns.Contains("CreatedAt"))
-                {
-                    GeneralGridView.Columns["CreatedAt"].Visible = false; // Hide the ID column
-                }
+                //if (GeneralGridView.Columns.Contains("CreatedAt"))
+                //{
+                //    GeneralGridView.Columns["CreatedAt"].Visible = false; // Hide the ID column
+                //}
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading general: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         public void DeleteGeneral(int generalId)
         {
 
@@ -212,7 +216,7 @@ namespace inventory_management_system.View.General
                 // Get the selected employee's ID
                 int generalId = Convert.ToInt32(GeneralGridView.Rows[e.RowIndex].Cells["Id"].Value);
 
-                
+
                 if (e.ColumnIndex == GeneralGridView.Columns["Delete"].Index)
                 {
                     // Delete button clicked
@@ -237,6 +241,13 @@ namespace inventory_management_system.View.General
             //this.Hide();
             index.Visible = true;
             this.Visible = false;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Report.Index report = new Report.Index();
+            report.Show();
+            this.Hide();
         }
     }
 }

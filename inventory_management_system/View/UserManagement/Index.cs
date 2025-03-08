@@ -60,6 +60,7 @@ namespace inventory_management_system.View.UserManagement
         {
             Create create = new Create();
             create.Show();
+            this.Hide();
         }
 
         private void Index_Load(object sender, EventArgs e)
@@ -161,7 +162,7 @@ namespace inventory_management_system.View.UserManagement
                     toggleStatusColumn.DefaultCellStyle.ForeColor = Color.White;
                 }
 
-                
+
 
                 // Add "Delete" button
                 if (!userGridView.Columns.Contains("Delete"))
@@ -195,12 +196,12 @@ namespace inventory_management_system.View.UserManagement
                     if (activeStatus == 1)
                     {
 
-                        
+
                         userGridView.Rows[i].Cells["Delete"].Style.BackColor = Color.White;  // Hide text
                     }
                     else
                     {
-                        
+
                         userGridView.Rows[i].Cells["Delete"].Style.ForeColor = Color.White;
                     }
                 }
@@ -224,7 +225,7 @@ namespace inventory_management_system.View.UserManagement
             }
         }
 
-        
+
         public void DeleteUser(int userId)
         {
 
@@ -293,6 +294,13 @@ namespace inventory_management_system.View.UserManagement
             //this.Hide();
             index.Visible = true;
             this.Visible = false;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Report.Index index = new Report.Index();    
+            index.Show();
+            this.Hide();
         }
     }
 }

@@ -65,9 +65,7 @@ namespace inventory_management_system.View
         private void Dashboard_Load(object sender, EventArgs e)
         {
             dailySellingPriceTxt.Text = profitController.DailySellingPrice().ToString() + "(ကျပ်)";
-            dailyProfitTxt.Text = profitController.DailyProfit().ToString() + "(ကျပ်)";
             monthlySellingPriceTxt.Text = profitController.MonthlySellingPrice().ToString() + "(ကျပ်)";
-            monthlyProfitTxt.Text = profitController.MonthlyProfit().ToString() + "(ကျပ်)";
 
 
 
@@ -95,6 +93,13 @@ namespace inventory_management_system.View
         private void label9_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Report.Index index = new Report.Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

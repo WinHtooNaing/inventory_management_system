@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            label1 = new Label();
             linkLabel1 = new LinkLabel();
             sellerNameLabel = new Label();
             Logout = new LinkLabel();
@@ -37,7 +38,6 @@
             totalPriceTxt = new Label();
             cancleBtn = new Button();
             sellBtn = new Button();
-            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)itemGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)fakeDataGridView).BeginInit();
@@ -57,15 +57,26 @@
             panel1.Size = new Size(1527, 75);
             panel1.TabIndex = 0;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 30F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(244, 132, 95);
+            label1.Location = new Point(38, 7);
+            label1.Name = "label1";
+            label1.Size = new Size(409, 57);
+            label1.TabIndex = 4;
+            label1.Text = "Retail Rice System";
+            // 
             // linkLabel1
             // 
             linkLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            linkLabel1.Font = new Font("Times New Roman", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.FromArgb(244, 132, 95);
-            linkLabel1.Location = new Point(1265, 27);
+            linkLabel1.Location = new Point(1235, 28);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(120, 23);
+            linkLabel1.Size = new Size(152, 29);
             linkLabel1.TabIndex = 3;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Daily Record";
@@ -75,11 +86,11 @@
             // 
             sellerNameLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             sellerNameLabel.AutoSize = true;
-            sellerNameLabel.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            sellerNameLabel.Font = new Font("Times New Roman", 15F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             sellerNameLabel.ForeColor = Color.FromArgb(244, 132, 95);
             sellerNameLabel.Location = new Point(1108, 27);
             sellerNameLabel.Name = "sellerNameLabel";
-            sellerNameLabel.Size = new Size(56, 23);
+            sellerNameLabel.Size = new Size(71, 30);
             sellerNameLabel.TabIndex = 2;
             sellerNameLabel.Text = "name";
             sellerNameLabel.Click += label1_Click;
@@ -89,11 +100,11 @@
             Logout.ActiveLinkColor = Color.FromArgb(255, 89, 94);
             Logout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Logout.AutoSize = true;
-            Logout.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Logout.Font = new Font("Times New Roman", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Logout.LinkColor = Color.FromArgb(255, 89, 94);
             Logout.Location = new Point(1403, 27);
             Logout.Name = "Logout";
-            Logout.Size = new Size(70, 23);
+            Logout.Size = new Size(89, 29);
             Logout.TabIndex = 1;
             Logout.TabStop = true;
             Logout.Text = "Logout";
@@ -146,7 +157,7 @@
             cancleBtn.Name = "cancleBtn";
             cancleBtn.Size = new Size(163, 58);
             cancleBtn.TabIndex = 4;
-            cancleBtn.Text = "Cancle";
+            cancleBtn.Text = "Cancel";
             cancleBtn.UseVisualStyleBackColor = false;
             cancleBtn.Click += cancleBtn_Click;
             // 
@@ -165,17 +176,6 @@
             sellBtn.Text = "Sell";
             sellBtn.UseVisualStyleBackColor = false;
             sellBtn.Click += sellBtn_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(244, 132, 95);
-            label1.Location = new Point(38, 14);
-            label1.Name = "label1";
-            label1.Size = new Size(277, 39);
-            label1.TabIndex = 4;
-            label1.Text = "Retail Rice System";
             // 
             // Dashboard
             // 

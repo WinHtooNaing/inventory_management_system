@@ -16,14 +16,14 @@ namespace inventory_management_system.Controller
         }
         public bool AddEmployee(Employee employee)
         {
-            string query = "insert into Employee(EmployeeRole,Number,Salary) values(@EmployeeRole,@Number,@Salary)";
+            string query = "insert into Employee(Name,EmployeeRole,Salary) values(@Name,@EmployeeRole,@Salary)";
             try
             {
                 dbConnection.OpenConnection();
                 SqlConnection connection=dbConnection.GetConnection();
                 SqlCommand cmd=new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@EmployeeRole", employee.EmployeeRole);
-                cmd.Parameters.AddWithValue("@Number", employee.Number);
+                cmd.Parameters.AddWithValue("@Name", employee.Name);
                 cmd.Parameters.AddWithValue("@Salary", employee.Salary);
                int rowEffected= cmd.ExecuteNonQuery();
                 return rowEffected > 0;
@@ -43,7 +43,7 @@ namespace inventory_management_system.Controller
         public List<Employee> GetAllEmployees()
         {
             List<Employee> employees = new List<Employee>();
-            string query = "SELECT * FROM Employee";
+            string query = "SELECT * FROM Employee WHERE EndDate IS NULL";
             
             try
             {
@@ -57,10 +57,12 @@ namespace inventory_management_system.Controller
                     Employee employee = new Employee
                     {
                         Id = Convert.ToInt32(reader["Id"]),
+                        Name = reader["Name"].ToString(),
                         EmployeeRole = reader["EmployeeRole"].ToString(),
-                        Number = Convert.ToInt32(reader["Number"]),
                         Salary = Convert.ToDecimal(reader["Salary"]),
-                        CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
+                        StartDate = Convert.ToDateTime(reader["StartDate"]),
+                        EndDate = reader["EndDate"] != DBNull.Value ? Convert.ToDateTime(reader["EndDate"]) : (DateTime?)null
+
 
                     };
                     employees.Add(employee);
@@ -123,7 +125,7 @@ namespace inventory_management_system.Controller
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         EmployeeRole = reader["EmployeeRole"].ToString(),
-                        Number = Convert.ToInt32(reader["Number"]),
+                        Name = Convert.ToInt32(reader["Name"]).ToString(),
                         Salary = Convert.ToDecimal(reader["Salary"]),
                         
                     };
@@ -144,7 +146,7 @@ namespace inventory_management_system.Controller
         // UPDATE (Modify an existing employee)
         public bool UpdateEmployee(Employee employee)
         {
-            string query = "UPDATE Employee SET EmployeeRole=@EmployeeRole, Number=@Number, Salary=@Salary WHERE Id=@Id";
+            string query = "UPDATE Employee SET Name=@Name,EmployeeRole=@EmployeeRole,  Salary=@Salary WHERE Id=@Id";
 
             try
             {
@@ -153,7 +155,7 @@ namespace inventory_management_system.Controller
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@Id", employee.Id);
                 cmd.Parameters.AddWithValue("@EmployeeRole", employee.EmployeeRole);
-                cmd.Parameters.AddWithValue("@Number", employee.Number);
+                cmd.Parameters.AddWithValue("@Name", employee.Name);
                 cmd.Parameters.AddWithValue("@Salary", employee.Salary);
 
                 int rowAffected = cmd.ExecuteNonQuery();
@@ -169,5 +171,31 @@ namespace inventory_management_system.Controller
                 dbConnection.CloseConnection();
             }
         }
+        public bool MarkEmployeeAsLeft(int employeeId)
+        {
+            string query = "UPDATE Employee SET EndDate = @EndDate WHERE Id = @Id";
+
+            try
+            {
+                dbConnection.OpenConnection();
+                SqlConnection connection = dbConnection.GetConnection();
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.Parameters.AddWithValue("@Id", employeeId);
+                cmd.Parameters.AddWithValue("@EndDate", DateTime.Now); // Set current date
+
+                int rowAffected = cmd.ExecuteNonQuery();
+                return rowAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while marking employee as left: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                dbConnection.CloseConnection();
+            }
+        }
+
     }
 }

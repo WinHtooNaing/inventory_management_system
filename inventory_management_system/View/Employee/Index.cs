@@ -74,15 +74,15 @@ namespace inventory_management_system.View.Employee
 
                     // Get updated values from the grid
                     string updatedRole = EmployeeGridView.Rows[rowIndex].Cells["EmployeeRole"].Value.ToString();
-                    int updatedNumber = Convert.ToInt32(EmployeeGridView.Rows[rowIndex].Cells["Number"].Value); // Ensure proper conversion
+                    string updatedName = EmployeeGridView.Rows[rowIndex].Cells["Name"].Value.ToString(); // Ensure proper conversion
                     decimal updatedSalary = Convert.ToDecimal(EmployeeGridView.Rows[rowIndex].Cells["Salary"].Value);
 
                     // Create an Employee object with the updated values
                     Model.Employee updatedEmployee = new Model.Employee
                     {
                         Id = employeeId,
+                        Name = updatedName,
                         EmployeeRole = updatedRole,
-                        Number = updatedNumber,
                         Salary = updatedSalary
                     };
 
@@ -109,6 +109,7 @@ namespace inventory_management_system.View.Employee
         {
             Create create = new Create();
             create.Show();
+            this.Hide();
         }
         private void LoadEmployeeIntoGrid()
         {
@@ -116,7 +117,6 @@ namespace inventory_management_system.View.Employee
             {
                 // Fetch all employees from the repository
                 var employees = employeeController.GetAllEmployees();
-
 
 
                 // Bind the employees list to the DataGridView
@@ -135,26 +135,37 @@ namespace inventory_management_system.View.Employee
                     EmployeeGridView.Columns.Insert(0, noColumn);
                 }
 
-               
-
-                // Add Delete button
-                if (!EmployeeGridView.Columns.Contains("Delete"))
+                if (!EmployeeGridView.Columns.Contains("MarkAsLeft"))
                 {
-                    DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
+                    DataGridViewButtonColumn leaveColumn = new DataGridViewButtonColumn
                     {
-                        Name = "Delete",
-                        HeaderText = "",
-                        Text = "🗑", // Unicode trash icon
+                        Name = "MarkAsLeft",
+                        HeaderText = "Mark as Left",
+                        Text = "❌",
                         UseColumnTextForButtonValue = true
                     };
-                    EmployeeGridView.Columns.Add(deleteColumn);
-
-                    // Optional: Style the button
-                    deleteColumn.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 12); // Use an emoji-supporting font
-                    deleteColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    deleteColumn.DefaultCellStyle.BackColor = Color.Red;
-                    deleteColumn.DefaultCellStyle.ForeColor = Color.White;
+                    EmployeeGridView.Columns.Add(leaveColumn);
                 }
+
+
+                //// Add Delete button
+                //if (!EmployeeGridView.Columns.Contains("Delete"))
+                //{
+                //    DataGridViewButtonColumn deleteColumn = new DataGridViewButtonColumn
+                //    {
+                //        Name = "Delete",
+                //        HeaderText = "",
+                //        Text = "🗑", // Unicode trash icon
+                //        UseColumnTextForButtonValue = true
+                //    };
+                //    EmployeeGridView.Columns.Add(deleteColumn);
+
+                //    // Optional: Style the button
+                //    deleteColumn.DefaultCellStyle.Font = new Font("Segoe UI Emoji", 12); // Use an emoji-supporting font
+                //    deleteColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //    deleteColumn.DefaultCellStyle.BackColor = Color.Red;
+                //    deleteColumn.DefaultCellStyle.ForeColor = Color.White;
+                //}
 
                 // Populate "No" column with sequential numbers
                 for (int i = 0; i < EmployeeGridView.Rows.Count; i++)
@@ -163,9 +174,12 @@ namespace inventory_management_system.View.Employee
                 }
 
 
-                EmployeeGridView.Columns["EmployeeRole"].ReadOnly = false;
-                EmployeeGridView.Columns["Number"].ReadOnly = false;
+                EmployeeGridView.Columns["EmployeeRole"].ReadOnly = true;
+                EmployeeGridView.Columns["Name"].ReadOnly = false;
                 EmployeeGridView.Columns["Salary"].ReadOnly = false;
+                EmployeeGridView.Columns["StartDate"].ReadOnly = true;
+                EmployeeGridView.Columns["EndDate"].ReadOnly = true;
+
 
                 // Customize the DataGridView
                 EmployeeGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -175,57 +189,77 @@ namespace inventory_management_system.View.Employee
                 {
                     EmployeeGridView.Columns["Id"].Visible = false; // Hide the ID column
                 }
-                if (EmployeeGridView.Columns.Contains("CreatedAt"))
+                // Hide the "End Date" column
+                if (EmployeeGridView.Columns.Contains("EndDate"))
                 {
-                    EmployeeGridView.Columns["CreatedAt"].Visible = false; // Hide the ID column
-
-
+                    EmployeeGridView.Columns["EndDate"].Visible = false; // Hide the ID column
                 }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading employee: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
-        public void DeleteEmployee(int employeeId)
-        {
+
+        //public void DeleteEmployee(int employeeId)
+        //{
 
 
 
-            bool deleteItem = employeeController.DeleteEmployee(employeeId);
-            if (deleteItem)
-            {
-                MessageBox.Show("Employee Deleted successfully", "Employee delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadEmployeeIntoGrid();
-            }
-            else
-            {
-                MessageBox.Show("Employee not found or already deleted.", "Employee delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+        //    bool deleteItem = employeeController.DeleteEmployee(employeeId);
+        //    if (deleteItem)
+        //    {
+        //        MessageBox.Show("Employee Deleted successfully", "Employee delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        LoadEmployeeIntoGrid();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Employee not found or already deleted.", "Employee delete", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
 
 
 
 
-        }
+        //}
 
+        //private void EmployeeGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    // Ensure the clicked cell is a button
+        //    if (e.RowIndex >= 0 && (e.ColumnIndex == EmployeeGridView.Columns["Edit"].Index || e.ColumnIndex == EmployeeGridView.Columns["Delete"].Index))
+        //    {
+        //        // Get the selected employee's ID
+        //        int employeeId = Convert.ToInt32(EmployeeGridView.Rows[e.RowIndex].Cells["Id"].Value);
+
+
+        //        if (e.ColumnIndex == EmployeeGridView.Columns["Delete"].Index)
+        //        {
+        //            // Delete button clicked
+        //            DeleteEmployee(employeeId);
+        //        }
+        //    }
+        //}
         private void EmployeeGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Ensure the clicked cell is a button
-            if (e.RowIndex >= 0 && (e.ColumnIndex == EmployeeGridView.Columns["Edit"].Index || e.ColumnIndex == EmployeeGridView.Columns["Delete"].Index))
+            if (e.RowIndex >= 0)
             {
-                // Get the selected employee's ID
                 int employeeId = Convert.ToInt32(EmployeeGridView.Rows[e.RowIndex].Cells["Id"].Value);
 
-                
-                if (e.ColumnIndex == EmployeeGridView.Columns["Delete"].Index)
+                if (e.ColumnIndex == EmployeeGridView.Columns["MarkAsLeft"].Index)
                 {
-                    // Delete button clicked
-                    DeleteEmployee(employeeId);
+                    bool marked = employeeController.MarkEmployeeAsLeft(employeeId);
+                    if (marked)
+                    {
+                        MessageBox.Show("Employee marked as left successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadEmployeeIntoGrid(); // Refresh grid
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to mark employee as left.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
-
         private void button6_Click(object sender, EventArgs e)
         {
             SessionStorage.Session.UserName = "";
@@ -242,6 +276,13 @@ namespace inventory_management_system.View.Employee
             //this.Hide();
             index.Visible = true;
             this.Visible = false;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Report.Index index = new Report.Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

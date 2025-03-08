@@ -16,8 +16,8 @@ namespace inventory_management_system.Controller
         }
         public bool SellItem(SellItem item)
         {
-            string query = "INSERT SellItem (Type, Price, Quantity, TotalPrice,SellerName,Category) " +
-                           "VALUES (@Type, @Price, @Quantity, @TotalPrice,@SellerName,@Category)";
+            string query = "INSERT SellItem (Type, Price, Quantity, TotalPrice,SellerName,Category,PurchasePrice) " +
+                           "VALUES (@Type, @Price, @Quantity, @TotalPrice,@SellerName,@Category,@PurchasePrice)";
 
             try
             {
@@ -30,6 +30,7 @@ namespace inventory_management_system.Controller
                 cmd.Parameters.AddWithValue("@TotalPrice", item.TotalPrice);
                 cmd.Parameters.AddWithValue("@SellerName", item.SellerName);
                 cmd.Parameters.AddWithValue("@Category",item.Category);
+                cmd.Parameters.AddWithValue("@PurchasePrice",item.PurchasePrice);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;
@@ -72,7 +73,7 @@ namespace inventory_management_system.Controller
                         Price = Convert.ToDecimal(reader["Price"]),
                         Quantity = Convert.ToInt32(reader["Quantity"]),
                         TotalPrice = Convert.ToDecimal(reader["TotalPrice"]),
-                        SellerName = reader["SellerName"].ToString()
+                        SellerName = reader["SellerName"].ToString(),
 
                     };
                     items.Add(item);

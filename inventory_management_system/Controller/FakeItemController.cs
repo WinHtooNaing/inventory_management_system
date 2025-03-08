@@ -46,8 +46,8 @@ namespace inventory_management_system.Controller
                 Console.WriteLine("Type with the same ID already exists.");
                 return false;
             }
-            string query = "INSERT FakeItem (TypeId,Type,Price,Category)" +
-                " VALUES (@TypeId,@Type,@Price,@Category);";
+            string query = "INSERT FakeItem (TypeId,Type,Price,Category,PurchasePrice)" +
+                " VALUES (@TypeId,@Type,@Price,@Category,@PurchasePrice);";
             try
             {
                 databaseConnection.OpenConnection();
@@ -58,6 +58,7 @@ namespace inventory_management_system.Controller
                 cmd.Parameters.AddWithValue("@Type", fakeItem.Type);
                 cmd.Parameters.AddWithValue("@Price", fakeItem.Price);
                 cmd.Parameters.AddWithValue("@Category",fakeItem.Category);
+                cmd.Parameters.AddWithValue("@PurchasePrice",fakeItem.PurchasePrice);
 
                 int rowsAffected = cmd.ExecuteNonQuery();
                 return rowsAffected > 0;
@@ -94,6 +95,7 @@ namespace inventory_management_system.Controller
                         Type = reader["Type"].ToString(),
                         Category = reader["Category"].ToString(),
                         Price = Convert.ToDecimal(reader["Price"]),
+                        PurchasePrice = Convert.ToDecimal(reader["PurchasePrice"])
                     });
                 }
                 reader.Close();

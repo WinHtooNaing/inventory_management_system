@@ -259,6 +259,11 @@ namespace inventory_management_system.Seller
                 {
                     fakeDataGridView.Columns["Price"].Visible = false;
                 }
+                // Hide the "Product Price" column
+                if (fakeDataGridView.Columns.Contains("PurchasePrice"))
+                {
+                    fakeDataGridView.Columns["PurchasePrice"].Visible = false;
+                }
                 // Hide the "CreatedAt" column
                 if (fakeDataGridView.Columns.Contains("CreatedAt"))
                 {
@@ -342,6 +347,7 @@ namespace inventory_management_system.Seller
                         Type = item.Types,
                         Category = item.Category,
                         Price = item.SellingPrice,
+                        PurchasePrice = item.PurchasePrice,
 
 
                     };
@@ -494,7 +500,7 @@ namespace inventory_management_system.Seller
                     decimal price = Convert.ToDecimal(row.Cells["Price"].Value);
                     int quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
                     string sellerName = SessionStorage.Session.UserName; // Seller name stored in session.
-
+                    decimal purchasePrice = Convert.ToDecimal(row.Cells["PurchasePrice"].Value);
 
                     // Fetch the item to update the quantity
                     var item = itemController.GetItemById(typeId);
@@ -513,7 +519,8 @@ namespace inventory_management_system.Seller
                                 Quantity = quantity,
 
                                 TotalPrice = price * quantity,
-                                SellerName = sellerName
+                                SellerName = sellerName,
+                                PurchasePrice = purchasePrice,
                             };
 
                             // add the sold item to the list

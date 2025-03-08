@@ -71,10 +71,8 @@ namespace inventory_management_system.View.SellItem
         {
             SessionStorage.Session.UserName = "";
             Login index = new Login();
-            //index.Show();
-            //this.Hide();
-            index.Visible = true;
-            this.Visible = false;
+            index.Show();
+            this.Hide();
         }
 
         private void Index_Load(object sender, EventArgs e)
@@ -156,6 +154,10 @@ namespace inventory_management_system.View.SellItem
                 {
                     sellItemGridView.Columns["CreatedAt"].Visible = false; // Hide the ID column
                 }
+                if (sellItemGridView.Columns.Contains("PurchasePrice"))
+                {
+                    sellItemGridView.Columns["PurchasePrice"].Visible = false; // Hide the ID column
+                }
             }
             catch (Exception ex)
             {
@@ -194,6 +196,13 @@ namespace inventory_management_system.View.SellItem
         {
             searchTxt.Text = "";
             LoadSellItem();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Report.Index index = new Report.Index();
+            index.Show();
+            this.Hide();
         }
     }
 }

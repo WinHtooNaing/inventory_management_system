@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             panel1 = new Panel();
+            button8 = new Button();
             button7 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -42,33 +42,26 @@
             pictureBox1 = new PictureBox();
             panel3 = new Panel();
             label1 = new Label();
-            imageList1 = new ImageList(components);
-            imageList2 = new ImageList(components);
             panel4 = new Panel();
+            iconButton2 = new FontAwesome.Sharp.IconButton();
             dailySellingPriceTxt = new Label();
             label2 = new Label();
-            panel5 = new Panel();
-            monthlyProfitTxt = new Label();
-            label5 = new Label();
             panel6 = new Panel();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
             monthlySellingPriceTxt = new Label();
             label7 = new Label();
-            panel7 = new Panel();
-            dailyProfitTxt = new Label();
-            r = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel4.SuspendLayout();
-            panel5.SuspendLayout();
             panel6.SuspendLayout();
-            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(button8);
             panel1.Controls.Add(button7);
             panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
@@ -82,6 +75,18 @@
             panel1.Size = new Size(250, 685);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.White;
+            button8.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button8.Location = new Point(0, 528);
+            button8.Name = "button8";
+            button8.Size = new Size(250, 75);
+            button8.TabIndex = 13;
+            button8.Text = "Report";
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // button7
             // 
@@ -103,7 +108,7 @@
             button5.Name = "button5";
             button5.Size = new Size(250, 75);
             button5.TabIndex = 10;
-            button5.Text = "General";
+            button5.Text = "General Expense";
             button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
@@ -127,7 +132,7 @@
             button3.Name = "button3";
             button3.Size = new Size(250, 75);
             button3.TabIndex = 8;
-            button3.Text = "Employee";
+            button3.Text = "Staff";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
@@ -200,43 +205,46 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Times New Roman", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Times New Roman", 40F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(244, 132, 95);
-            label1.Location = new Point(639, 105);
+            label1.Location = new Point(583, 105);
             label1.Name = "label1";
-            label1.Size = new Size(340, 45);
+            label1.Size = new Size(568, 76);
             label1.TabIndex = 12;
             label1.Text = "Retail Rice System";
-            // 
-            // imageList1
-            // 
-            imageList1.ColorDepth = ColorDepth.Depth32Bit;
-            imageList1.ImageSize = new Size(16, 16);
-            imageList1.TransparentColor = Color.Transparent;
-            // 
-            // imageList2
-            // 
-            imageList2.ColorDepth = ColorDepth.Depth32Bit;
-            imageList2.ImageSize = new Size(16, 16);
-            imageList2.TransparentColor = Color.Transparent;
             // 
             // panel4
             // 
             panel4.Anchor = AnchorStyles.None;
             panel4.BorderStyle = BorderStyle.FixedSingle;
+            panel4.Controls.Add(iconButton2);
             panel4.Controls.Add(dailySellingPriceTxt);
             panel4.Controls.Add(label2);
-            panel4.Location = new Point(421, 212);
+            panel4.Location = new Point(354, 265);
             panel4.Name = "panel4";
-            panel4.Size = new Size(341, 182);
+            panel4.Size = new Size(411, 261);
             panel4.TabIndex = 13;
+            // 
+            // iconButton2
+            // 
+            iconButton2.FlatAppearance.BorderSize = 0;
+            iconButton2.FlatStyle = FlatStyle.Flat;
+            iconButton2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconButton2.IconChar = FontAwesome.Sharp.IconChar.MoneyBill;
+            iconButton2.IconColor = Color.FromArgb(242, 112, 89);
+            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            iconButton2.Location = new Point(153, 1);
+            iconButton2.Name = "iconButton2";
+            iconButton2.Size = new Size(94, 109);
+            iconButton2.TabIndex = 16;
+            iconButton2.UseVisualStyleBackColor = true;
             // 
             // dailySellingPriceTxt
             // 
             dailySellingPriceTxt.AutoSize = true;
             dailySellingPriceTxt.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dailySellingPriceTxt.ForeColor = Color.FromArgb(242, 112, 89);
-            dailySellingPriceTxt.Location = new Point(73, 106);
+            dailySellingPriceTxt.Location = new Point(107, 199);
             dailySellingPriceTxt.Name = "dailySellingPriceTxt";
             dailySellingPriceTxt.Size = new Size(178, 32);
             dailySellingPriceTxt.TabIndex = 1;
@@ -245,64 +253,46 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(242, 112, 89);
-            label2.Location = new Point(82, 35);
+            label2.Location = new Point(92, 128);
             label2.Name = "label2";
-            label2.Size = new Size(169, 26);
+            label2.Size = new Size(218, 34);
             label2.TabIndex = 0;
             label2.Text = "တစ်နေ့တာ ရောင်းရငွေ";
-            // 
-            // panel5
-            // 
-            panel5.Anchor = AnchorStyles.None;
-            panel5.BorderStyle = BorderStyle.FixedSingle;
-            panel5.Controls.Add(monthlyProfitTxt);
-            panel5.Controls.Add(label5);
-            panel5.Location = new Point(855, 445);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(341, 182);
-            panel5.TabIndex = 14;
-            // 
-            // monthlyProfitTxt
-            // 
-            monthlyProfitTxt.AutoSize = true;
-            monthlyProfitTxt.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            monthlyProfitTxt.ForeColor = Color.FromArgb(242, 112, 89);
-            monthlyProfitTxt.Location = new Point(82, 106);
-            monthlyProfitTxt.Name = "monthlyProfitTxt";
-            monthlyProfitTxt.Size = new Size(136, 32);
-            monthlyProfitTxt.TabIndex = 1;
-            monthlyProfitTxt.Text = "1000 (ကျပ်)";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(242, 112, 89);
-            label5.Location = new Point(100, 35);
-            label5.Name = "label5";
-            label5.Size = new Size(140, 26);
-            label5.TabIndex = 0;
-            label5.Text = "တစ်လတာ အမြတ်";
             // 
             // panel6
             // 
             panel6.Anchor = AnchorStyles.None;
             panel6.BorderStyle = BorderStyle.FixedSingle;
+            panel6.Controls.Add(iconButton1);
             panel6.Controls.Add(monthlySellingPriceTxt);
             panel6.Controls.Add(label7);
-            panel6.Location = new Point(855, 212);
+            panel6.Location = new Point(858, 265);
             panel6.Name = "panel6";
-            panel6.Size = new Size(341, 182);
+            panel6.Size = new Size(423, 261);
             panel6.TabIndex = 14;
+            // 
+            // iconButton1
+            // 
+            iconButton1.FlatAppearance.BorderSize = 0;
+            iconButton1.FlatStyle = FlatStyle.Flat;
+            iconButton1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.MoneyBills;
+            iconButton1.IconColor = Color.FromArgb(242, 112, 89);
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            iconButton1.Location = new Point(167, 1);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new Size(94, 109);
+            iconButton1.TabIndex = 15;
+            iconButton1.UseVisualStyleBackColor = true;
             // 
             // monthlySellingPriceTxt
             // 
             monthlySellingPriceTxt.AutoSize = true;
             monthlySellingPriceTxt.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             monthlySellingPriceTxt.ForeColor = Color.FromArgb(242, 112, 89);
-            monthlySellingPriceTxt.Location = new Point(82, 106);
+            monthlySellingPriceTxt.Location = new Point(125, 199);
             monthlySellingPriceTxt.Name = "monthlySellingPriceTxt";
             monthlySellingPriceTxt.Size = new Size(136, 32);
             monthlySellingPriceTxt.TabIndex = 1;
@@ -311,46 +301,13 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Times New Roman", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(242, 112, 89);
-            label7.Location = new Point(82, 35);
+            label7.Location = new Point(103, 128);
             label7.Name = "label7";
-            label7.Size = new Size(167, 26);
+            label7.Size = new Size(215, 34);
             label7.TabIndex = 0;
             label7.Text = "တစ်လတာ ရောင်းရငွေ";
-            // 
-            // panel7
-            // 
-            panel7.Anchor = AnchorStyles.None;
-            panel7.BorderStyle = BorderStyle.FixedSingle;
-            panel7.Controls.Add(dailyProfitTxt);
-            panel7.Controls.Add(r);
-            panel7.Location = new Point(421, 445);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(341, 182);
-            panel7.TabIndex = 14;
-            // 
-            // dailyProfitTxt
-            // 
-            dailyProfitTxt.AutoSize = true;
-            dailyProfitTxt.Font = new Font("Times New Roman", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dailyProfitTxt.ForeColor = Color.FromArgb(242, 112, 89);
-            dailyProfitTxt.Location = new Point(82, 106);
-            dailyProfitTxt.Name = "dailyProfitTxt";
-            dailyProfitTxt.Size = new Size(136, 32);
-            dailyProfitTxt.TabIndex = 1;
-            dailyProfitTxt.Text = "1000 (ကျပ်)";
-            // 
-            // r
-            // 
-            r.AutoSize = true;
-            r.Font = new Font("Times New Roman", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            r.ForeColor = Color.FromArgb(242, 112, 89);
-            r.Location = new Point(96, 35);
-            r.Name = "r";
-            r.Size = new Size(142, 26);
-            r.TabIndex = 0;
-            r.Text = "တစ်နေ့တာ အမြတ်";
             // 
             // Dashboard
             // 
@@ -358,9 +315,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1374, 686);
-            Controls.Add(panel5);
             Controls.Add(panel6);
-            Controls.Add(panel7);
             Controls.Add(panel4);
             Controls.Add(label1);
             Controls.Add(panel1);
@@ -375,12 +330,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
-            panel7.ResumeLayout(false);
-            panel7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -399,19 +350,14 @@
         private Button button7;
         private Label label1;
         private PictureBox pictureBox1;
-        private ImageList imageList1;
-        private ImageList imageList2;
         private Panel panel4;
         private Label dailySellingPriceTxt;
         private Label label2;
-        private Panel panel5;
-        private Label monthlyProfitTxt;
-        private Label label5;
         private Panel panel6;
         private Label monthlySellingPriceTxt;
         private Label label7;
-        private Panel panel7;
-        private Label dailyProfitTxt;
-        private Label r;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton iconButton2;
+        private Button button8;
     }
 }

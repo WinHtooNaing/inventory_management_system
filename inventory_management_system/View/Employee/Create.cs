@@ -29,10 +29,10 @@ namespace inventory_management_system.View.Employee
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string EmpRole = roleTxt.Text;
-            int Number = int.Parse(numberTxt.Text);
+            string EmpRole = roleTxt.SelectedItem.ToString();
+            string Name = nameTxt.Text;
             decimal Salary = decimal.Parse(salaryTxt.Text);
-            if (string.IsNullOrEmpty(EmpRole) || string.IsNullOrEmpty(numberTxt.Text) || string.IsNullOrEmpty(salaryTxt.Text))
+            if (string.IsNullOrEmpty(EmpRole) || string.IsNullOrEmpty(nameTxt.Text) || string.IsNullOrEmpty(salaryTxt.Text))
             {
                 MessageBox.Show("invalid input", "Add", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -40,8 +40,8 @@ namespace inventory_management_system.View.Employee
             }
             Model.Employee employee = new Model.Employee
             {
+                Name = Name,
                 EmployeeRole = EmpRole,
-                Number = Number,
                 Salary = Salary
 
             };
@@ -71,6 +71,13 @@ namespace inventory_management_system.View.Employee
         private void Create_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Index index = new Index();
+            index.Show();
+            this.Hide();
         }
     }
 }
